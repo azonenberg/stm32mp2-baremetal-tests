@@ -30,22 +30,43 @@ _vectors:
 _start:
 
 	//Enable GPIOJ: RCC_GPIOJCFGR = 6, barrier to make sure this commits before we try to use GPIOJ
-	ldr	r0, =0x54200550
-	mov	r1, 6
-	str	r1, [r0]
+	ldr		r0, =0x54200550
+	mov		r1, 6
+	str		r1, [r0]
 	dsb
 
 	//Set PJ7 as output: GPIOJ_MODER = 0xffff7fff
-	ldr r0, =0x542d0000
-	ldr r1, =0xffff7fff
-	str	r1, [r0]
+	ldr 	r0, =0x542d0000
+	ldr 	r1, =0xffff7fff
+	str		r1, [r0]
+
+	//Blinky loop on GPIOJ_ODR
+	ldr		r0, =0x542d0014
+blinky:
 
 	//Turn on the LED: GPIOJ_ODR = 0x80
-	ldr	r0, =0x542d0014
-	ldr r1, =0x80
-	str r1, [r0]
+	ldr 	r1, =0x80
+	str 	r1, [r0]
 	dsb
 
-//Infinite loop
-infloop:
-	b	infloop
+	//Delay loop
+	ldr		r2, =5000000
+delay1:
+	sub		r2, r2, 1
+	cmp		r2, 0
+	bgt		delay1
+
+	//Turn it off
+	mov	 	r1, 0
+	str 	r1, [r0]
+	dsb
+
+	//Delay loop
+	ldr		r2, =5000000
+delay2:
+	sub		r2, r2, 1
+	cmp		r2, 0
+	bgt		delay2
+
+	//Repeat the blinky forever
+	b		blinky
