@@ -38,13 +38,13 @@
 //#include <peripheral/I2C.h>
 #include <peripheral/Power.h>
 //#include <peripheral/SPI.h>
-//#include <peripheral/UART.h>
+#include <peripheral/UART.h>
 
 ///@brief Initialize application-specific hardware stuff
 extern void App_Init();
 
 //Common ISRs used by application and bootloader
-//void USART2_Handler();
+void USART6_Handler();
 
 //Helper functions that need to move to boilerplate eventually
 void BSP_InitPower();
@@ -56,5 +56,8 @@ void BSP_Init();
 //GPIOs
 //extern GPIOPin g_pgoodLED;
 void InitGPIOs();
+
+//The UART
+extern UART<16, 256> g_uart;
 
 #endif

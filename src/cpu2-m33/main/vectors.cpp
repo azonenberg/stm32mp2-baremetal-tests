@@ -44,7 +44,6 @@ void HardFault_Handler();
 void NMI_Handler();
 
 void defaultISR();
-void USART1_Handler();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interrupt vector table
@@ -203,7 +202,7 @@ fnptr __attribute__((section(".vector"))) vectorTable[] =
 	defaultISR,				//irq133 ETH2_SBD
 	defaultISR,				//irq134 ETH2_PMT
 	defaultISR,				//irq135 ETH2_LPI
-	defaultISR,				//irq136 USART6
+	USART6_Handler,			//irq136 USART6
 	defaultISR,				//irq137 I2C3
 	defaultISR,				//irq138 I3C3
 	defaultISR,				//irq139 USBH_EHCI

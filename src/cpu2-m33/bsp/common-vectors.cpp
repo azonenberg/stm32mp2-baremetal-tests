@@ -35,21 +35,17 @@
 #include <core/platform.h>
 #include "hwinit.h"
 
-//void USART1_Handler();
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ISRs
 
 /**
-	@brief UART1 interrupt
+	@brief UART6 interrupt
  */
-/*
-void USART1_Handler()
+void USART6_Handler()
 {
-	if(USART1.ISR & USART_ISR_TXE)
+	if(USART6.ISR & USART_ISR_TXE)
 		g_uart.OnIRQTxEmpty();
 
-	if(USART1.ISR & USART_ISR_RXNE)
+	if(USART6.ISR & USART_ISR_RXNE)
 		g_uart.OnIRQRxData();
 }
-*/
