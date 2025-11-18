@@ -36,9 +36,12 @@
 //#include <peripheral/EXTI.h>
 #include <peripheral/GPIO.h>
 //#include <peripheral/I2C.h>
+#include <peripheral/OctoSPI.h>
 #include <peripheral/Power.h>
 //#include <peripheral/SPI.h>
 #include <peripheral/UART.h>
+
+#include <embedded-utils/OctoSPI_SpiFlashInterface.h>
 
 ///@brief Initialize application-specific hardware stuff
 extern void App_Init();
@@ -59,5 +62,8 @@ void InitGPIOs();
 
 //The UART
 extern UART<16, 256> g_uart;
+
+//QSPI flash interface
+void InitQSPI();
 
 #endif

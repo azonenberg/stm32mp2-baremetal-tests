@@ -127,18 +127,6 @@ void BSP_InitClocks()
 
 void BSP_InitUART()
 {
-	//DEBUG: Turn on a bunch of LEDs
-	GPIOPin blue(&GPIOJ, 7, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-	GPIOPin red_n(&GPIOH, 4, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-	GPIOPin green(&GPIOD, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-	GPIOPin orange(&GPIOJ, 6, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-
-	blue = 1;
-	red_n = 0;
-	green = 1;
-	orange = 1;
-	asm("dsb");
-
 	//USART6 clock is 100 MHz max (PLL4 / 4)
 	RCCHelper::SetCrossbarDivider(RCC_ck_ker_usart6, RCC_PREDIV_4, 1);
 	RCCHelper::SetCrossbarMux(RCC_ck_ker_usart6, RCC_XBAR_PLL4);
@@ -169,6 +157,8 @@ void BSP_InitLog()
 void BSP_Init()
 {
 	InitGPIOs();
+	InitQSPI();
+
 	App_Init();
 }
 
@@ -177,22 +167,48 @@ void BSP_Init()
 
 void InitGPIOs()
 {
-	while(1)
-	{}
-	/*
 	g_log("Initializing GPIOs\n");
 
-	//turn off all LEDs
-	g_pgoodLED = 0;
-	g_faultLED = 0;
-	g_sysokLED = 0;
+	//DEBUG: Turn on a bunch of LEDs
+	static GPIOPin blue(&GPIOJ, 7, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+	static GPIOPin red_n(&GPIOH, 4, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+	static GPIOPin green(&GPIOD, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+	static GPIOPin orange(&GPIOJ, 6, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
 
-	//Set up GPIOs for I2C bus
-	static GPIOPin i2c_scl(&GPIOB, 6, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 4, true);
-	static GPIOPin i2c_sda(&GPIOB, 7, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 4, true);
+	blue = 1;
+	red_n = 0;
+	green = 1;
+	orange = 1;
+	asm("dsb");
+}
 
-	//Turn off DUT power
-	g_dutVddEn = 0;
-	g_dutVccioEn = 0;
-	*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// OCTOSPI for talking to the flash
+
+void InitQSPI()
+{
+	g_log("Initializing QSPI\n");
+	LogIndenter li(g_log);
+
+	//Configure the GPIOs
+	static GPIOPin csn(&GPIOD, 3, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+	static GPIOPin sck(&GPIOD, 0, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+	static GPIOPin dq0(&GPIOD, 4, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+	static GPIOPin dq1(&GPIOD, 5, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+	static GPIOPin dq2(&GPIOD, 6, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+	static GPIOPin dq3(&GPIOD, 7, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+
+	//Initialize the OCTOSPI itself
+	RCCHelper::Enable(&OCTOSPIM);
+
+	//Set up clock for the OCTOSPI to 100 MHz (PLL4 / 4), max is 133
+	RCCHelper::SetCrossbarDivider(RCC_ck_ker_ospi1, RCC_PREDIV_4, 1);
+	RCCHelper::SetCrossbarMux(RCC_ck_ker_ospi1, RCC_XBAR_PLL4);
+
+	g_log("Waiting...\n");
+	g_logTimer.Sleep(20000);
+
+	//Set up the QSPI flash to 50 MHz clock (100 MHz / 2)
+	OctoSPI_SpiFlashInterface flash(&OCTOSPI1, 64 * 1024 * 1024, 2);
+	flash.Discover();
 }

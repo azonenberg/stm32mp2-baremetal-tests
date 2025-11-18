@@ -11,9 +11,9 @@ target_link_options(main
 target_link_libraries(main
 	common-embedded-platform-core
 	embedded-cli
+	bsp
 	embedded-utils
 	#microkvs
-	bsp
 	stm32-cpp
 	)
 
