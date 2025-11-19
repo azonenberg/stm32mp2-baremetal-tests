@@ -35,13 +35,16 @@
 #include <core/platform.h>
 #include "hwinit.h"
 
+void BSP_InitDebug();
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // System status indicator LEDs
-/*
-GPIOPin g_pgoodLED(&GPIOB, 9, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-GPIOPin g_faultLED(&GPIOB, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-GPIOPin g_sysokLED(&GPIOH, 0, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-*/
+
+GPIOPin g_blueLED(&GPIOJ, 7, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_redLED_n(&GPIOH, 4, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_greenLED(&GPIOD, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_orangeLED(&GPIOJ, 6, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Common global hardware config used by both bootloader and application
 
@@ -52,6 +55,11 @@ UART<16, 256> g_uart(&USART6, 868);
 //APB clocks are not divided, so timer clock equals PCLK (see table 134)
 //Divide down to get 10 kHz ticks
 Timer g_logTimer(&TIM2, Timer::FEATURE_GENERAL_PURPOSE, 20000);
+
+//Flash controller
+OctoSPI_SpiFlashInterface* g_flash = nullptr;
+
+GPIOPin g_user1Button(&GPIOD, 2, GPIOPin::MODE_INPUT, GPIOPin::SLEW_SLOW);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Low level init
@@ -66,6 +74,8 @@ void BSP_MainLoopIteration()
  */
 void BSP_InitPower()
 {
+	BSP_InitDebug();
+
 	//VDDIO1/2/3/4 should be valid by the time we get to this point but make sure
 	Power::EnableVDDIO1Monitor();
 	while(!Power::IsVDDIO1Ready())
@@ -91,6 +101,42 @@ void BSP_InitPower()
 	Power::EnableBackupSramWrites();
 
 	//TODO: initialize power for the ADCs
+}
+
+/**
+	@brief Initialize debug stuff
+ */
+void BSP_InitDebug()
+{
+	//Turn on debug access as early as possible to enable troubleshooting (if booting from flash)
+	switch(SYSCFG.BOOTSR)
+	{
+		//Development boot, nothing needed
+		case BOOT_MODE_DEV1:
+		case BOOT_MODE_DEV2:
+			break;
+
+		//Otherwise booting from flash
+		default:
+
+			//unlock debug in BSEC
+			_BSEC.DENR = 0xdeb60fff;
+
+			//enable debug and trace in RCC
+			RCC.DBGCFGR |= 0x300;
+
+			#pragma gcc unroll 1
+			for(int i=0; i<16; i++)
+				asm("nop");
+
+			//Prevent A35 from sleeping
+			//TODO: DBGMCU.CR
+			*reinterpret_cast<volatile uint32_t*>(0x4a010004) = 0x00000017;
+			break;
+	}
+
+	//Turn on the orange LED to show we got this far
+	g_orangeLED = 1;
 }
 
 void BSP_InitClocks()
@@ -136,7 +182,11 @@ void BSP_InitUART()
 	GPIOPin uart_tx(&GPIOF, 13, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 3);
 	GPIOPin uart_rx(&GPIOF, 14, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 3);
 
-	g_logTimer.Sleep(10);	//wait for UART pins to be high long enough to remove any glitches during powerup
+	//Reinitialize the timer because for some reason it doesn't seem to reliably get initialized in the constructor
+	//(maybe something isn't set up in RCC yet or something when global constructors are called?)
+	g_logTimer.Initialize(20000);
+
+	g_logTimer.Sleep(50);	//wait for UART pins to be high long enough to remove any glitches during powerup
 
 	//Enable the UART interrupt once the poins have stabilized
 	NVIC_EnableIRQ(136);
@@ -169,17 +219,11 @@ void InitGPIOs()
 {
 	g_log("Initializing GPIOs\n");
 
-	//DEBUG: Turn on a bunch of LEDs
-	static GPIOPin blue(&GPIOJ, 7, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-	static GPIOPin red_n(&GPIOH, 4, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-	static GPIOPin green(&GPIOD, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-	static GPIOPin orange(&GPIOJ, 6, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
-
-	blue = 1;
-	red_n = 0;
-	green = 1;
-	orange = 1;
-	asm("dsb");
+	//Turn off all LEDs
+	g_blueLED = 0;
+	g_redLED_n = 1;
+	g_greenLED = 0;
+	//g_orangeLED = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,6 +242,9 @@ void InitQSPI()
 	static GPIOPin dq2(&GPIOD, 6, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
 	static GPIOPin dq3(&GPIOD, 7, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
 
+	//Set pullup on  WP#
+	dq2.SetPullMode(GPIOPin::PULL_UP);
+
 	//Initialize the OCTOSPI itself
 	RCCHelper::Enable(&OCTOSPIM);
 
@@ -208,7 +255,8 @@ void InitQSPI()
 	g_log("Waiting...\n");
 	g_logTimer.Sleep(20000);
 
-	//Set up the QSPI flash to 50 MHz clock (100 MHz / 2)
-	OctoSPI_SpiFlashInterface flash(&OCTOSPI1, 64 * 1024 * 1024, 2);
+	//Set up the QSPI flash to 25 MHz clock (100 MHz / 4)
+	static OctoSPI_SpiFlashInterface flash(&OCTOSPI1, 64 * 1024 * 1024, 4);
 	flash.Discover();
+	g_flash = &flash;
 }

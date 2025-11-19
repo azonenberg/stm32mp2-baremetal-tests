@@ -57,13 +57,18 @@ void BSP_InitLog();
 void BSP_Init();
 
 //GPIOs
-//extern GPIOPin g_pgoodLED;
 void InitGPIOs();
+extern GPIOPin g_blueLED;
+extern GPIOPin g_redLED_n;
+extern GPIOPin g_greenLED;
+extern GPIOPin g_orangeLED;
+extern GPIOPin g_user1Button;
 
 //The UART
 extern UART<16, 256> g_uart;
 
 //QSPI flash interface
 void InitQSPI();
+extern OctoSPI_SpiFlashInterface* g_flash;
 
 #endif
