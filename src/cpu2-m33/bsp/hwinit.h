@@ -55,6 +55,7 @@ void BSP_InitClocks();
 void BSP_InitUART();
 void BSP_InitLog();
 void BSP_Init();
+void BSP_InitDebug();
 
 //GPIOs
 void InitGPIOs();

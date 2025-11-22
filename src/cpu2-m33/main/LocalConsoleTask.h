@@ -27,12 +27,36 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+#ifndef LocalConsoleTask_h
+#define LocalConsoleTask_h
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
+#include <core/Task.h>
+#include "TestCLISessionContext.h"
 
-extern uint8_t g_firmwareImage[65536];
+class LocalConsoleTask : public Task
+{
+public:
+	LocalConsoleTask()
+	{
+		m_outputStream.Initialize(&g_uart);
+		m_context.Initialize(&m_outputStream, "localadmin");
+		m_context.PrintPrompt();
+	}
+
+	virtual void Iteration()
+	{
+		if(g_uart.HasInput())
+			m_context.OnKeystroke(g_uart.BlockingRead());
+	}
+
+protected:
+
+	///@brief Output stream for local serial console
+	UARTOutputStream m_outputStream;
+
+	///@brief Session context for local serial console
+	TestCLISessionContext m_context;
+};
 
 #endif
+

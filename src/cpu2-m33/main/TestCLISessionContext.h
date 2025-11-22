@@ -27,12 +27,95 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+/**
+	@file
+	@brief Declaration of TestCLISessionContext
+ */
+#ifndef TestCLISessionContext_h
+#define TestCLISessionContext_h
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
+#include <embedded-cli/CLIOutputStream.h>
+#include <embedded-cli/CLISessionContext.h>
+//#include <staticnet/cli/SSHOutputStream.h>
 
-extern uint8_t g_firmwareImage[65536];
+class TestCLISessionContext : public CLISessionContext
+{
+public:
+	TestCLISessionContext();
+	/*
+	void Initialize(int sessid, TCPTableEntry* socket, SSHTransportServer* server, const char* username)
+	{
+		m_sshstream.Initialize(sessid, socket, server);
+		Initialize(&m_sshstream, username);
+	}*/
+
+	//Generic init for non-SSH streams
+	void Initialize(CLIOutputStream* stream, const char* username)
+	{
+		m_stream = stream;
+		LoadHostname();
+		CLISessionContext::Initialize(m_stream, username);
+	}
+/*
+	SSHOutputStream* GetSSHStream()
+	{ return &m_sshstream; }*/
+
+	virtual void PrintPrompt();
+
+protected:
+
+	void LoadHostname();
+
+	virtual void OnExecute();
+
+	void OnExecuteRoot();
+
+	void OnBootCommand();
+	void OnBootA35();
+	void DumpDebugRegisters();
+
+	void OnFlashCommand();
+	void OnFlashErase();
+	void EraseFlashBlock(uint32_t ptr, uint32_t len);
+	void OnFlashProgram();
+
+	/*
+	void OnCommit();
+	//void OnDFU();
+	void OnEepromCommand();
+	void OnEepromProgram(DutSocketType stype);
+
+	void OnIPCommand();
+	void OnIPAddress(const char* addr);
+	void OnIPGateway(const char* gw);
+
+	void OnNoCommand();
+	void OnNoSSHCommand();
+
+	void OnNtpServer(const char* addr);
+
+	void OnReload();
+	void OnRollback();
+	void OnShowCommand();
+	void OnShowFlash();
+	void OnShowFlashDetail();
+	void OnShowHardware();
+
+	void OnShowVersion();
+	void OnSSHCommand();
+
+	SSHOutputStream m_sshstream;
+	*/
+	CLIOutputStream* m_stream;
+
+	///@brief Hostname (only used for display)
+	char m_hostname[33];
+	/*
+	void PrintPowerRail(const char* name, dsuperregs_t vreg, dsuperregs_t ireg);
+
+	void PrintPowerRail(const char* name, superregs_t vreg, dsuperregs_t ireg)
+	{ PrintPowerRail(name, static_cast<dsuperregs_t>(vreg), ireg); }
+	*/
+};
 
 #endif

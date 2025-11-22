@@ -35,8 +35,6 @@
 #include <core/platform.h>
 #include "hwinit.h"
 
-void BSP_InitDebug();
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // System status indicator LEDs
 
@@ -60,6 +58,7 @@ Timer g_logTimer(&TIM2, Timer::FEATURE_GENERAL_PURPOSE, 20000);
 OctoSPI_SpiFlashInterface* g_flash = nullptr;
 
 GPIOPin g_user1Button(&GPIOD, 2, GPIOPin::MODE_INPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_user2Button(&GPIOG, 8, GPIOPin::MODE_INPUT, GPIOPin::SLEW_SLOW);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Low level init
@@ -125,7 +124,6 @@ void BSP_InitDebug()
 			//enable debug and trace in RCC
 			RCC.DBGCFGR |= 0x300;
 
-			#pragma gcc unroll 1
 			for(int i=0; i<16; i++)
 				asm("nop");
 

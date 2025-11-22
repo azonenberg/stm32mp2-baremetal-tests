@@ -1,11 +1,12 @@
 add_executable(main
 	Init.cpp
+	TestCLISessionContext.cpp
 	vectors.cpp)
 
 target_link_options(main
 	PUBLIC "-ffunction-sections"
 	PUBLIC "-Wl,--gc-sections"
-	PUBLIC "-Wl,-T${PROJECT_ROOT}/stm32-cpp/devices/link/stm32mp257-cpu2-ramload.ld"
+	PUBLIC "-Wl,-T${PROJECT_ROOT}/stm32-cpp/devices/link/stm32mp257-cpu2-fsbl.ld"
 	PUBLIC "-L${PROJECT_ROOT}/stm32-cpp/devices/link/")
 
 target_link_libraries(main
