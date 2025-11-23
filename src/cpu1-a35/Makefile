@@ -1,5 +1,7 @@
 all:
-	aarch64-linux-gnu-g++ \
+
+	# Compile
+	aarch64-none-elf-g++ \
 		-g \
 		-fno-exceptions -fno-rtti -fno-threadsafe-statics \
 		-nostdlib -nostartfiles \
@@ -7,9 +9,12 @@ all:
 		-Wl,-T../../stm32-cpp/devices/link/stm32mp257-cpu1-fsbl.ld \
 		-L../../stm32-cpp/devices/link/ \
 		-O0 \
-		-o test.elf \
+		-static \
+		-o main \
 		main.S
 
-	../../common-embedded-platform/postbuild/stm32mp257-cpu1.sh test.elf
+	# Extract flat binary image
+	../../common-embedded-platform/postbuild/stm32mp257-cpu1.sh main
 
-#--specs=nano.specs
+	# Add FSBL image headers
+	mkfsbl a main.bin fsbl.bin
