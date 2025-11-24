@@ -549,7 +549,6 @@ void TestCLISessionContext::OnBootA35()
 		//It should now be in HOLD_BOOT state, verify
 		while( (PWR.CPU1D1SR & 1) == 0)
 		{}
-		g_greenLED = 1;
 	}
 
 	g_log("CPU is now in HOLD_BOOT\n");
@@ -558,7 +557,6 @@ void TestCLISessionContext::OnBootA35()
 	g_log("Releasing boot\n");
 	RCC.CPUBOOTCR = 2;
 	DumpDebugRegisters();
-	g_blueLED = 1;
 
 	/*
 	//now send a C2SEV??
@@ -587,8 +585,6 @@ void TestCLISessionContext::OnBootA35()
 
 	g_log("After enabling debug\n");
 	DumpDebugRegisters();
-
-	g_greenLED = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

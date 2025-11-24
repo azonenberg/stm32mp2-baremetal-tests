@@ -11,7 +11,8 @@ all:
 		-O0 \
 		-static \
 		-o main \
-		main.S
+		startup.S \
+		mainloop.cpp
 
 	# Extract flat binary image
 	../../common-embedded-platform/postbuild/stm32mp257-cpu1.sh main
