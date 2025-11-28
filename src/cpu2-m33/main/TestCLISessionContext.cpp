@@ -515,11 +515,11 @@ void TestCLISessionContext::DumpDebugRegisters()
 	LogIndenter li(g_log);
 
 	uint32_t* ca35ss = reinterpret_cast<uint32_t*>(0x4880'0000);
-	g_log("SYSCFG_LP_SR = %08x\n", ca35ss[0x2024/4]);
+	/*g_log("SYSCFG_LP_SR = %08x\n", ca35ss[0x2024/4]);
 	g_log("BSEC.FVR0    = %08x\n", _BSEC.FVR[0]);
 	g_log("BSEC.DENR    = %08x\n", _BSEC.DENR);
 	g_log("RCC.DBGCFGR  = %08x\n", RCC.DBGCFGR);
-	g_log("DBGMCU_CR    = %08x\n", *reinterpret_cast<volatile uint32_t*>(0x4a010004));
+	g_log("DBGMCU_CR    = %08x\n", *reinterpret_cast<volatile uint32_t*>(0x4a010004));*/
 	g_log("PWR.CPU1D1SR = %08x\n", PWR.CPU1D1SR);
 }
 
@@ -528,17 +528,11 @@ void TestCLISessionContext::OnBootA35()
 	g_log("Starting A35\n");
 	LogIndenter li(g_log);
 
-	//Print core status
-	g_log("Initial registers\n");
-	DumpDebugRegisters();
-
 	//Actually start the CPU
-	g_log("Starting CPU\n");
 	uint32_t dstate = (PWR.CPU1D1SR >> 8) & 0x7;
 	if(dstate == 4)
 	{
-		LogIndenter li2(g_log);
-		g_log("CPU is in standby DSTATE\n");
+		g_log("CPU is in standby DSTATE, sending SEV to wake it up\n");
 
 		//Send CPU2 SEV to CPU1 to wake it up
 		EXTI1.RPR3 = 1;
@@ -551,40 +545,8 @@ void TestCLISessionContext::OnBootA35()
 		{}
 	}
 
-	g_log("CPU is now in HOLD_BOOT\n");
-	DumpDebugRegisters();
-
-	g_log("Releasing boot\n");
+	g_log("CPU is in HOLD_BOOT, releasing it\n");
 	RCC.CPUBOOTCR = 2;
-	DumpDebugRegisters();
-
-	/*
-	//now send a C2SEV??
-	EXTI1.RPR3 = 2;
-	EXTI1.C2IMR3 = 2;
-	EXTI1.C2EMR3 = 2;
-	*/
-	//TODO: NVIC enable ack interrupt??
-
-	//Send a SEV to the A35 complex
-	//asm("sev");
-
-	//Trigger a reset of the A35
-	//RCC.C1RSTCSETR = 1;
-	asm("dmb st");
-
-	//Wait 100ms
-	g_logTimer.Sleep(1000);
-
-	g_log("After restarting CPU\n");
-	DumpDebugRegisters();
-
-	//Re-enable debugging
-	g_log("Re-enabling debug\n");
-	BSP_InitDebug();
-
-	g_log("After enabling debug\n");
-	DumpDebugRegisters();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -628,8 +590,7 @@ void TestCLISessionContext::OnFlashProgram()
 		return;
 	}
 
-	//for now limit each image to 64k to save erase time
-	uint32_t imageSize = 0x1'0000;	//0x0004'0000
+	uint32_t imageSize = 0x0004'0000;
 
 	uint32_t imageBase = 0;
 
@@ -697,8 +658,7 @@ void TestCLISessionContext::OnFlashProgram()
 //"flash erase"
 void TestCLISessionContext::OnFlashErase()
 {
-	//for now limit each image to 64k to save erase time
-	uint32_t imageSize = 0x1'0000;	//0x0004'0000
+	uint32_t imageSize = 0x0004'0000;
 
 	switch(m_command[2].m_commandID)
 	{

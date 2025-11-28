@@ -27,13 +27,9 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+#ifndef a35test_h
+#define a35test_h
 
 #include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
-#include <multicore/IPCDescriptorTable.h>
-
-extern uint8_t g_firmwareImage[65536];
 
 #endif

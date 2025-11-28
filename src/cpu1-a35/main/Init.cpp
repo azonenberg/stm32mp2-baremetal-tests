@@ -27,13 +27,81 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+#include "a35test.h"
+/*
+//#include "LEDTask.h"
+#include <math.h>
+//#include <peripheral/DWT.h>
+//#include "ITMTask.h"
+#include "LocalConsoleTask.h"
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
-#include <multicore/IPCDescriptorTable.h>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Task tables
 
-extern uint8_t g_firmwareImage[65536];
+etl::vector<Task*, MAX_TASKS>  g_tasks;
+etl::vector<TimerTask*, MAX_TIMER_TASKS>  g_timerTasks;
 
-#endif
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Peripheral initialization
+*/
+void App_Init()
+{
+	//TODO do stuff
+
+	/*
+	g_log("Application initialization\n");
+	LogIndenter li(g_log);
+
+	g_log("Firmware image partition in RAM is at %08x\n", g_firmwareImage);
+	*/
+
+	//RCCHelper::Enable(&_RTC);
+
+	//Format version string
+	/*
+	StringBuffer buf(g_version, sizeof(g_version));
+	static const char* buildtime = __TIME__;
+	buf.Printf("%s %c%c%c%c%c%c",
+		__DATE__, buildtime[0], buildtime[1], buildtime[3], buildtime[4], buildtime[6], buildtime[7]);
+	g_log("Firmware version %s\n", g_version);
+	*/
+	/*
+	//Start tracing
+	#ifdef _DEBUG
+		ITM::Enable();
+		DWT::EnablePCSampling(DWT::PC_SAMPLE_SLOW);
+		ITM::EnableDwtForwarding();
+	#endif
+
+	static LEDTask ledTask;
+	static ButtonTask buttonTask;
+	static DumptruckSuperSPIServer spiserver(g_spi);
+	static SensorTask sensorTask;
+	#ifdef _DEBUG
+		static ITMTask itmTask;
+	#endif
+	*/
+	/*
+	static LocalConsoleTask localConsoleTask;
+
+	g_tasks.push_back(&localConsoleTask);
+	*/
+	/*
+	g_tasks.push_back(&ledTask);
+	g_tasks.push_back(&buttonTask);
+	g_tasks.push_back(&g_super);
+	g_tasks.push_back(&spiserver);
+	g_tasks.push_back(&sensorTask);
+	#ifdef _DEBUG
+		g_tasks.push_back(&itmTask);
+	#endif
+
+	g_timerTasks.push_back(&ledTask);
+	#ifdef _DEBUG
+		g_timerTasks.push_back(&itmTask);
+	#endif
+	*/
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Main loop

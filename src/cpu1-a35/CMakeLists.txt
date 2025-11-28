@@ -2,7 +2,7 @@
 # Top level config
 
 cmake_minimum_required(VERSION 3.19)
-project(mp2test-m33 LANGUAGES C CXX ASM)
+project(mp2test-a35 LANGUAGES C CXX ASM)
 
 file(REAL_PATH "${CMAKE_SOURCE_DIR}/../.." PROJECT_ROOT)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -14,7 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 include("${PROJECT_ROOT}/common-embedded-platform/boilerplate.cmake")
 
 # Target-specific configuration
-set(TARGET_MCU stm32mp257-cpu2)
+set(TARGET_MCU stm32mp257-cpu1)
 include("${PROJECT_ROOT}/stm32-cpp/build/${TARGET_MCU}.cmake")
 
 # Include paths
@@ -28,7 +28,7 @@ include_directories(
 add_compile_definitions(MAX_TASKS=7)
 add_compile_definitions(MAX_TIMER_TASKS=3)
 
-# We're building a RAM image not a flash image so no need to copy data to flash
+# We're building a RAM image not a flash/XIP image so no need to copy data to flash
 add_compile_definitions(RAM_IMAGE=1)
 
 ########################################################################################################################
@@ -48,7 +48,7 @@ set(CEP_NO_IBC 1)
 add_subdirectory("${PROJECT_ROOT}/common-embedded-platform" "${CMAKE_BINARY_DIR}/common-embedded-platform")
 add_subdirectory("${PROJECT_ROOT}/embedded-cli" "${CMAKE_BINARY_DIR}/embedded-cli")
 add_subdirectory("${PROJECT_ROOT}/embedded-utils" "${CMAKE_BINARY_DIR}/embedded-utils")
-add_subdirectory("${PROJECT_ROOT}/microkvs" "${CMAKE_BINARY_DIR}/microkvs")
+#add_subdirectory("${PROJECT_ROOT}/microkvs" "${CMAKE_BINARY_DIR}/microkvs")
 add_subdirectory("${PROJECT_ROOT}/stm32-cpp" "${CMAKE_BINARY_DIR}/stm32-cpp")
 
 ########################################################################################################################

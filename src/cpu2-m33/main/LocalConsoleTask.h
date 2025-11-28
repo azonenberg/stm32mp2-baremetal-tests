@@ -37,14 +37,21 @@ class LocalConsoleTask : public Task
 {
 public:
 	LocalConsoleTask()
+		: m_firstRefresh(true)
 	{
 		m_outputStream.Initialize(&g_uart);
 		m_context.Initialize(&m_outputStream, "localadmin");
-		m_context.PrintPrompt();
 	}
 
 	virtual void Iteration()
 	{
+		//Print prompt the first refresh after we initialize
+		if(m_firstRefresh)
+		{
+			m_context.PrintPrompt();
+			m_firstRefresh = false;
+		}
+
 		if(g_uart.HasInput())
 			m_context.OnKeystroke(g_uart.BlockingRead());
 	}
@@ -56,6 +63,9 @@ protected:
 
 	///@brief Session context for local serial console
 	TestCLISessionContext m_context;
+
+	///@brief True the first time we're called after startup
+	bool m_firstRefresh;
 };
 
 #endif

@@ -27,13 +27,23 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+#ifndef RemoteLoggerTask_h
+#define RemoteLoggerTask_h
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
+#include <core/Task.h>
 #include <multicore/IPCDescriptorTable.h>
 
-extern uint8_t g_firmwareImage[65536];
+class RemoteLoggerTask : public Task
+{
+public:
+	RemoteLoggerTask();
+
+	virtual void Iteration() override;
+
+protected:
+
+	IPCDescriptorChannel* m_logChannels[NUM_SECONDARY_CORES];
+};
 
 #endif
+

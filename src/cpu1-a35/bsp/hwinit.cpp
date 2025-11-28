@@ -27,79 +27,137 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#include "m33test.h"
-//#include "LEDTask.h"
-#include <math.h>
-//#include <peripheral/DWT.h>
-//#include "ITMTask.h"
-#include "LocalConsoleTask.h"
-#include "RemoteLoggerTask.h"
+/**
+	@file
+	@author	Andrew D. Zonenberg
+	@brief	Boot-time hardware initialization
+ */
+#include <core/platform.h>
+#include "hwinit.h"
+#include <multicore/MulticoreLogDevice.h>
+
+/*
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// System status indicator LEDs
+
+GPIOPin g_blueLED(&GPIOJ, 7, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_redLED_n(&GPIOH, 4, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_greenLED(&GPIOD, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+GPIOPin g_orangeLED(&GPIOJ, 6, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Task tables
+// Common global hardware config used by both bootloader and application
 
-etl::vector<Task*, MAX_TASKS>  g_tasks;
-etl::vector<TimerTask*, MAX_TIMER_TASKS>  g_timerTasks;
+//APB clocks are not divided, so timer clock equals PCLK (see table 134)
+//Divide down to get 10 kHz ticks
+Timer g_logTimer(&TIM3, Timer::FEATURE_GENERAL_PURPOSE, 20000);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Peripheral initialization
+// Low level init
 
-void App_Init()
+void BSP_MainLoopIteration()
 {
-	g_log("Application initialization\n");
-	LogIndenter li(g_log);
+	/* nothing here */
+}
 
-	g_log("Firmware image partition in RAM is at %08x\n", g_firmwareImage);
+/*
+	Initialize on device power domains
+ */
+void BSP_InitPower()
+{
+	//Looks like hardware/bootrom does all of this for us on the A35, nothing needed on our side
+	//TODO: any debug init needed to turn on trace or something?
+}
 
-	//RCCHelper::Enable(&_RTC);
+void BSP_InitMemory()
+{
+	//nothing here, M33 did that all for us
+}
 
-	//Format version string
-	/*
-	StringBuffer buf(g_version, sizeof(g_version));
-	static const char* buildtime = __TIME__;
-	buf.Printf("%s %c%c%c%c%c%c",
-		__DATE__, buildtime[0], buildtime[1], buildtime[3], buildtime[4], buildtime[6], buildtime[7]);
-	g_log("Firmware version %s\n", g_version);
-	*/
-	/*
-	//Start tracing
-	#ifdef _DEBUG
-		ITM::Enable();
-		DWT::EnablePCSampling(DWT::PC_SAMPLE_SLOW);
-		ITM::EnableDwtForwarding();
-	#endif
+void BSP_InitClocks()
+{
+	GPIOPin g_greenLED(&GPIOD, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+	GPIOPin g_blueLED(&GPIOJ, 7, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
+	GPIOPin g_orangeLED(&GPIOJ, 6, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
 
-	static LEDTask ledTask;
-	static ButtonTask buttonTask;
-	static DumptruckSuperSPIServer spiserver(g_spi);
-	static SensorTask sensorTask;
-	#ifdef _DEBUG
-		static ITMTask itmTask;
-	#endif
-	*/
-	static LocalConsoleTask localConsoleTask;
-	static RemoteLoggerTask remoteLoggerTask;
+	//Turn on the green LED
+	g_greenLED = 1;
 
-	g_tasks.push_back(&localConsoleTask);
-	g_tasks.push_back(&remoteLoggerTask);
-	/*
-	g_tasks.push_back(&ledTask);
-	g_tasks.push_back(&buttonTask);
-	g_tasks.push_back(&g_super);
-	g_tasks.push_back(&spiserver);
-	g_tasks.push_back(&sensorTask);
-	#ifdef _DEBUG
-		g_tasks.push_back(&itmTask);
-	#endif
+	//Select PLL1 clock source as the HSE clock (ck_pll1_ref)
+	RCCHelper::SetPLLInputMux(RCC_MUXSEL_PLL1, RCC_MUXSEL_HSE);
 
-	g_timerTasks.push_back(&ledTask);
-	#ifdef _DEBUG
-		g_timerTasks.push_back(&itmTask);
-	#endif
-	*/
+	//Turn on the CPU PLL1
+	{
+		//Select the external clock source as the CPU1 clock source so we can reconfigure the PLL
+		CA35SS.CHGCLKREQ.set = 1;
+		while( (CA35SS.CHGCLKREQ.reg & 2) != 2)
+		{}
 
-	g_ipcDescriptorTable.Print();
+		//Turn the orange LED off
+		g_orangeLED = 0;
+
+		//Hold the PLL in reset
+		CA35SS.PLL_EN.clear = 4;
+
+		/*
+			Default configuration at reset: FREQ1 = 2004b, FREQ2 = 0e
+			This translates to prediv=2, fbdiv=75, postdiv2 = 1, postdiv1 = 6
+			so total of /2 *75 /6 = 250 MHz CPU and 1500 MHz VCO from a 40 MHz input
+		 */
+
+		//Keep the same VCO settings as default: divide to 20 MHz PFD, multiply to 1.5 GHz VCO
+		CA35SS.PLL_FREQ1.reg = (2 << 16) | 75;
+
+		//Post-divide by 1 for now to give 1.5 GHz CPU
+		CA35SS.PLL_FREQ2.reg = 9;
+
+		//Start the PLL
+		CA35SS.PLL_EN.set = 1;
+
+		//Wait for it to lock
+		while( (CA35SS.PLL_EN.reg & 1) == 0)
+		{}
+
+		//Release PLL reset
+		CA35SS.PLL_EN.set = 4;
+
+		//Select PLL as clock source
+		CA35SS.CHGCLKREQ.clear = 1;
+
+		//Wait for ack
+		while( (CA35SS.CHGCLKREQ.reg & 2) != 0)
+		{}
+	}
+
+	g_blueLED = 1;
+}
+
+void BSP_InitUART()
+{
+	//nothing needed, uart is on the m33
+}
+
+void BSP_InitLog()
+{
+	static MulticoreLogDevice logdev;
+	logdev.LookupChannel(0, "log.a35-0");
+	logdev.LookupChannel(1, "log.a35-1");
+
+	//Sync the timers
+	TIM3.CNT = TIM2.CNT;
+
+	static LogSink<MAX_LOG_SINKS> sink(&logdev);
+	g_logSink = &sink;
+
+	g_log.Initialize(g_logSink, &g_logTimer);
+	g_log("Firmware compiled at %s on %s\n", __TIME__, __DATE__);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Main loop
+// Common features shared by both application and bootloader
+
+void BSP_Init()
+{
+	App_Init();
+}

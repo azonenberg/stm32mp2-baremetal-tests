@@ -27,13 +27,81 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+#include "m33test.h"
+#include "RemoteLoggerTask.h"
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
-#include <multicore/IPCDescriptorTable.h>
+#define LOG_BUFFER_SIZE 256
 
-extern uint8_t g_firmwareImage[65536];
+//RX buffer for logger
+char g_coreLogChannelName[NUM_SECONDARY_CORES][16] __attribute__((section(".ipcbuf")));
+volatile uint8_t g_coreLogBuffer[NUM_SECONDARY_CORES][LOG_BUFFER_SIZE] __attribute__((section(".ipcbuf")));
 
-#endif
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Construction / destruction
+
+RemoteLoggerTask::RemoteLoggerTask()
+{
+	g_log("Initializing remote logger task\n");
+	LogIndenter li(g_log);
+
+	//Allocate IPC channels
+	for(uint32_t i=0; i<NUM_SECONDARY_CORES; i++)
+	{
+		char* namebuf = g_coreLogChannelName[i];
+		strncpy(namebuf, "log.a35-0", sizeof(g_coreLogChannelName[i]));
+		namebuf[8] = '0' + i;
+		m_logChannels[i] = g_ipcDescriptorTable.AllocateChannel(
+			namebuf,
+			nullptr, 0,
+			g_coreLogBuffer[i], sizeof(g_coreLogBuffer[i]));
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Pop stuff
+
+void RemoteLoggerTask::Iteration()
+{
+	//We can't bound how much data the remote side will give us, or how long the lines will be
+	//so we need two full max-sized buffers on the stack (512 bytes)
+	char tmp[LOG_BUFFER_SIZE + 1];
+	char tmp2[LOG_BUFFER_SIZE + 1];
+
+	for(uint32_t i=0; i<NUM_SECONDARY_CORES; i++)
+	{
+		//Pop the buffer
+		uint32_t readSize = m_logChannels[i]->GetSecondaryFifo().Pop(reinterpret_cast<uint8_t*>(tmp));
+		if(readSize == 0)
+			continue;
+		tmp[readSize] = '\0';
+
+		//Read and process one line at a time
+		const char* pline = tmp;
+		const char* pend = tmp + LOG_BUFFER_SIZE;
+		while( (pline < pend) && (pline[0] != '\0') )
+		{
+			//Look for newline
+			auto pnl = strstr(pline, "\n");
+			if(pnl)
+			{
+				//Extract and null terminate the string
+				auto len = (pnl+1 - pline);
+				memcpy(tmp2, pline, len);
+				tmp2[len] = '\0';
+
+				g_log.WriteRaw(tmp2);
+
+				pline = pnl + 1;
+			}
+
+			else
+			{
+				//No newline found, log the message and add our own newline
+				//(this should never happen and indicates a bug on the other side of the link)
+				g_log.WriteRaw(pline);
+				g_log.WriteRaw("\n");
+				break;
+			}
+		}
+	}
+}

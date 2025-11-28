@@ -27,13 +27,13 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+/**
+	@file
+	@author	Andrew D. Zonenberg
+	@brief	ISRs shared by bootloader and application
+ */
+#include <core/platform.h>
+#include "hwinit.h"
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
-#include <multicore/IPCDescriptorTable.h>
-
-extern uint8_t g_firmwareImage[65536];
-
-#endif
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ISRs

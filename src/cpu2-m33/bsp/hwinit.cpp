@@ -102,6 +102,35 @@ void BSP_InitPower()
 	//TODO: initialize power for the ADCs
 }
 
+void BSP_InitMemory()
+{
+	//Allocate VDERAM to the CPU side rather than the video decoder we're not using
+	SYSCFG.VDERAMCR = 1;
+
+	//Enable all of the memories
+	RCCHelper::EnableSysram();
+	RCCHelper::EnableSram1();
+	RCCHelper::EnableSram2();
+	RCCHelper::EnableBackupSram();
+	RCCHelper::EnableVderam();
+	RCCHelper::EnableLpsram1();
+	RCCHelper::EnableLpsram2();
+	RCCHelper::EnableLpsram3();
+
+	//Set RISAB configuration to allow secure domain to access SRAM1/2 and VDERAM
+	//TODO: wrapper class
+	//+0x100
+	uint32_t* risab3_seccfgr = reinterpret_cast<uint32_t*>(0x42110100);
+	uint32_t* risab4_seccfgr = reinterpret_cast<uint32_t*>(0x42120100);
+	uint32_t* risab6_seccfgr = reinterpret_cast<uint32_t*>(0x42140100);
+	for(int i=0; i<32; i++)
+	{
+		risab3_seccfgr[i] = 0xff;
+		risab4_seccfgr[i] = 0xff;
+		risab6_seccfgr[i] = 0xff;
+	}
+}
+
 /**
 	@brief Initialize debug stuff
  */
@@ -145,13 +174,19 @@ void BSP_InitClocks()
 	//Set PLL4 input to come from the HSE
 	RCCHelper::SetPLLInputMux(RCC_MUXSEL_PLL4, RCC_MUXSEL_HSE);
 
-	//Set up PLL4 to run ck_icn_hs_mcu, must be 400 MHz max so run it at exactly 400
+	//Temporarily set the MCU to run off the HSI oscillator while we configure the PLL
+	RCCHelper::SetCrossbarMux(RCC_ck_icn_hs_mcu, RCC_XBAR_HSI);
+
+	//Set up PLL4 to run most of the system
+	//We want to get 600, 400, 300, and 200 MHz out of it for various system clocks.
+	//2400 MHz divides cleanly down to everything with even dividers (allows 50% duty cycle).
+	//Odd dividers can cause duty cycle distortion which is problematic when running close to Fmax of target
 	RCCHelper::ConfigureGeneralPLL(
 		4,	//PLL4
 		1,	//PFD = 40 MHz ref / 1 = 40 MHz
-		20,	//VCO = 40 MHz PFD * 20 = 800 MHz
-		2,	//Divide 1 = 800 MHz / 2 = 400 MHz
-		1);	//Divide 2 = 400 MHz / 1 = 400 MHz
+		60,	//VCO = 40 MHz PFD * 60 = 2400 MHz
+		1,	//Divide 1 = 2400 MHz / 1 = 2400 MHz
+		1);	//Divide 2 = 2400 MHz / 1 = 2400 MHz
 
 	//ck_icn_ls_mcu is max 200 MHz, so enable the divide-by-2 from ck_icn_hs_mcu so it runs at exactly 200
 	//(once we select the PLL, for the moment we're using the HSI clock... but we need dividers set before we switch)
@@ -164,19 +199,49 @@ void BSP_InitClocks()
 	RCCHelper::SetAPB4ClockDivider(RCC_APB_DIV_1);
 	RCCHelper::SetAPBDebugClockDivider(RCC_APB_DIV_1);
 
-	//Crossbar path to the MCU subsystem runs off PLL4 with no further division
-	RCCHelper::SetCrossbarDivider(RCC_ck_icn_hs_mcu, RCC_PREDIV_1, 1);
+	//Crossbar path to the MCU subsystem is 400 MHz max, runs off PLL4 divided by 6 (400 MHz)
+	RCCHelper::SetCrossbarDivider(RCC_ck_icn_hs_mcu, RCC_PREDIV_1, 6);
 	RCCHelper::SetCrossbarMux(RCC_ck_icn_hs_mcu, RCC_XBAR_PLL4);
+
+	//TODO: which if any of these will be borked by the bootrom when we start the A35??
+
+	//ck_icn_sdmmc to AHB5 bus is max 200 MHz, runs at PLL4 divided by 12 so 200 MHz
+	RCCHelper::SetCrossbarDivider(RCC_ck_icn_sdmmc, RCC_PREDIV_2, 6);
+	RCCHelper::SetCrossbarMux(RCC_ck_icn_sdmmc, RCC_XBAR_PLL4);
+
+	//ck_icn_ddr is max 600 MHz, runs at PLL4 divided by 4 (600 MHz)
+	RCCHelper::SetCrossbarDivider(RCC_ck_icn_ddr, RCC_PREDIV_4, 1);
+	RCCHelper::SetCrossbarMux(RCC_ck_icn_ddr, RCC_XBAR_PLL4);
+
+	//Don't set up ck_icn_display since we're not using any of that at the moment
+
+	//ck_icn_hsl is max 300 MHz, runs at PLL4 divided by 8 (300 MHz)
+	RCCHelper::SetCrossbarDivider(RCC_ck_icn_hsl, RCC_PREDIV_4, 2);
+	RCCHelper::SetCrossbarMux(RCC_ck_icn_hsl, RCC_XBAR_PLL4);
+
+	//ck_icn_nic is max 400 MHz, runs at PLL4 divided by 6 (400 MHz)
+	RCCHelper::SetCrossbarDivider(RCC_ck_icn_nic, RCC_PREDIV_1, 6);
+	RCCHelper::SetCrossbarMux(RCC_ck_icn_nic, RCC_XBAR_PLL4);
+
+	//Don't set up ck_icn_vid since we're not using any of that at the moment
+
+	//Configure PF11 as MCO1
+	GPIOPin mco1(&GPIOF, 11, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 1);
+
+	//Configure clock to MCO1
+	//PLL4 / (4*10) should be 2400 MHz / 32 = 75 MHz
+	RCCHelper::SetCrossbarDivider(RCC_ck_mco1, RCC_PREDIV_4, 12);
+	RCCHelper::SetCrossbarMux(RCC_ck_mco1, RCC_XBAR_PLL4);
+	RCCHelper::EnableMCO1();
 }
 
 void BSP_InitUART()
 {
-	//USART6 clock is 100 MHz max (PLL4 / 4)
-	RCCHelper::SetCrossbarDivider(RCC_ck_ker_usart6, RCC_PREDIV_4, 1);
+	//USART6 clock is 100 MHz max (PLL4 / 24)
+	RCCHelper::SetCrossbarDivider(RCC_ck_ker_usart6, RCC_PREDIV_4, 6);
 	RCCHelper::SetCrossbarMux(RCC_ck_ker_usart6, RCC_XBAR_PLL4);
 
 	//Initialize the UART for local console: 115.2 Kbps
-	//TODO: nice interface for enabling UART interrupts
 	GPIOPin uart_tx(&GPIOF, 13, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 3);
 	GPIOPin uart_rx(&GPIOF, 14, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 3);
 
@@ -186,7 +251,8 @@ void BSP_InitUART()
 
 	g_logTimer.Sleep(50);	//wait for UART pins to be high long enough to remove any glitches during powerup
 
-	//Enable the UART interrupt once the poins have stabilized
+	//Enable the UART interrupt once the pins have stabilized
+	//TODO: enum with names for IRQs etc
 	NVIC_EnableIRQ(136);
 }
 
@@ -246,8 +312,8 @@ void InitQSPI()
 	//Initialize the OCTOSPI itself
 	RCCHelper::Enable(&OCTOSPIM);
 
-	//Set up clock for the OCTOSPI to 100 MHz (PLL4 / 4), max is 133
-	RCCHelper::SetCrossbarDivider(RCC_ck_ker_ospi1, RCC_PREDIV_4, 1);
+	//Set up clock for the OCTOSPI to 100 MHz (PLL4 / 24), max is 133
+	RCCHelper::SetCrossbarDivider(RCC_ck_ker_ospi1, RCC_PREDIV_4, 6);
 	RCCHelper::SetCrossbarMux(RCC_ck_ker_ospi1, RCC_XBAR_PLL4);
 
 	g_log("Waiting...\n");

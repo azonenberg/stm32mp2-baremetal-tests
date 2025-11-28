@@ -1,3 +1,2 @@
-main
-*.elf
-*.bin
+debug-build
+release-build

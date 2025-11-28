@@ -1,10 +1,10 @@
 add_executable(main
 	Init.cpp
-	RemoteLoggerTask.cpp
-	TestCLISessionContext.cpp
-	vectors.cpp)
+	#TestCLISessionContext.cpp
+	#vectors.cpp
+	)
 
-set(LINKER_SCRIPT "${PROJECT_ROOT}/stm32-cpp/devices/link/stm32mp257-cpu2-fsbl.ld")
+set(LINKER_SCRIPT "${PROJECT_ROOT}/stm32-cpp/devices/link/stm32mp257-cpu1-fsbl.ld")
 
 target_link_options(main
 	PUBLIC "-ffunction-sections"
@@ -14,9 +14,9 @@ target_link_options(main
 
 target_link_libraries(main
 	common-embedded-platform-core
-	common-embedded-platform-multicore
 	embedded-cli
 	bsp
+	common-embedded-platform-multicore
 	embedded-utils
 	#microkvs
 	stm32-cpp

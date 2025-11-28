@@ -27,13 +27,54 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#ifndef m33test_h
-#define m33test_h
+#ifndef hwinit_h
+#define hwinit_h
 
-#include "../bsp/hwinit.h"
-#include <cli/UARTOutputStream.h>
+#include <core/platform.h>
+
+//#include <peripheral/ADC.h>
+//#include <peripheral/EXTI.h>
+#include <peripheral/GPIO.h>
+//#include <peripheral/I2C.h>
+//#include <peripheral/OctoSPI.h>
+//#include <peripheral/Power.h>
+//#include <peripheral/SPI.h>
+//#include <peripheral/UART.h>
+
 #include <multicore/IPCDescriptorTable.h>
 
-extern uint8_t g_firmwareImage[65536];
+//#include <embedded-utils/OctoSPI_SpiFlashInterface.h>
+
+///@brief Initialize application-specific hardware stuff
+extern void App_Init();
+/*
+//Common ISRs used by application and bootloader
+void USART6_Handler();
+
+//Helper functions that need to move to boilerplate eventually
+void BSP_InitPower();
+void BSP_InitClocks();
+void BSP_InitUART();
+void BSP_InitLog();
+void BSP_Init();
+void BSP_InitDebug();
+
+//GPIOs
+void InitGPIOs();
+extern GPIOPin g_blueLED;
+extern GPIOPin g_redLED_n;
+extern GPIOPin g_greenLED;
+extern GPIOPin g_orangeLED;
+extern GPIOPin g_user1Button;
+
+void InitMemory();
+
+//The UART
+extern UART<16, 256> g_uart;
+
+//QSPI flash interface
+void InitQSPI();
+extern OctoSPI_SpiFlashInterface* g_flash;
+*/
 
 #endif
