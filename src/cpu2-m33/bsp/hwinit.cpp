@@ -233,6 +233,20 @@ void BSP_InitClocks()
 	RCCHelper::SetCrossbarDivider(RCC_ck_mco1, RCC_PREDIV_4, 12);
 	RCCHelper::SetCrossbarMux(RCC_ck_mco1, RCC_XBAR_PLL4);
 	RCCHelper::EnableMCO1();
+
+	//Turn on the I-side L1 cache, enable and reset performance counters
+	ICACHE::Enable();
+	ICACHE::InvalidateAll();
+	ICACHE::PerfEnableHitCount();
+	ICACHE::PerfResetHitCount();
+	ICACHE::PerfEnableMissCount();
+	ICACHE::PerfResetMissCount();
+
+	//Turn on the D-side L1 cache, enable and reset performance counters
+	DCACHE::Enable();
+	DCACHE::InvalidateAll();
+	DCACHE::PerfResetAll();
+	DCACHE::PerfEnableAll();
 }
 
 void BSP_InitUART()

@@ -514,8 +514,8 @@ void TestCLISessionContext::DumpDebugRegisters()
 {
 	LogIndenter li(g_log);
 
-	uint32_t* ca35ss = reinterpret_cast<uint32_t*>(0x4880'0000);
-	/*g_log("SYSCFG_LP_SR = %08x\n", ca35ss[0x2024/4]);
+	/*uint32_t* ca35ss = reinterpret_cast<uint32_t*>(0x4880'0000);
+	g_log("SYSCFG_LP_SR = %08x\n", ca35ss[0x2024/4]);
 	g_log("BSEC.FVR0    = %08x\n", _BSEC.FVR[0]);
 	g_log("BSEC.DENR    = %08x\n", _BSEC.DENR);
 	g_log("RCC.DBGCFGR  = %08x\n", RCC.DBGCFGR);

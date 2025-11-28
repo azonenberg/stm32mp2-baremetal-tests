@@ -403,7 +403,9 @@ void defaultISR()
 {
 	//g_bbram->m_state = STATE_CRASH;
 	//g_bbram->m_crashReason = CRASH_UNUSED_ISR;
-	Reset();
+	//Reset();
+	while(1)
+	{}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -413,7 +415,9 @@ void NMI_Handler()
 {
 	//g_bbram->m_state = STATE_CRASH;
 	//g_bbram->m_crashReason = CRASH_NMI;
-	Reset();
+	//Reset();
+	while(1)
+	{}
 }
 
 void HardFault_Handler()
@@ -468,25 +472,33 @@ void HardFault_Handler()
 	//g_bbram->m_crashReason = CRASH_HARD_FAULT;
 	//Reset();
 	*/
+	while(1)
+	{}
 }
 
 void BusFault_Handler()
 {
 	//g_bbram->m_state = STATE_CRASH;
 	//g_bbram->m_crashReason = CRASH_BUS_FAULT;
-	Reset();
+	//Reset();
+	while(1)
+	{}
 }
 
 void UsageFault_Handler()
 {
 	//g_bbram->m_state = STATE_CRASH;
 	//g_bbram->m_crashReason = CRASH_USAGE_FAULT;
-	Reset();
+	//Reset();
+	while(1)
+	{}
 }
 
 void MemManage_Handler()
 {
 	//g_bbram->m_state = STATE_CRASH;
 	//g_bbram->m_crashReason = CRASH_MMU_FAULT;
-	Reset();
+	//Reset();
+	while(1)
+	{}
 }

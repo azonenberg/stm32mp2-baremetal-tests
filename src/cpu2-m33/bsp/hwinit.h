@@ -33,9 +33,12 @@
 #include <core/platform.h>
 
 //#include <peripheral/ADC.h>
+#include <peripheral/DCACHE.h>
 //#include <peripheral/EXTI.h>
 #include <peripheral/GPIO.h>
+#include <peripheral/ICACHE.h>
 //#include <peripheral/I2C.h>
+#include <peripheral/MPU.h>
 #include <peripheral/OctoSPI.h>
 #include <peripheral/Power.h>
 //#include <peripheral/SPI.h>
