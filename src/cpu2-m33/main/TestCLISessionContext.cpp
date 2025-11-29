@@ -38,7 +38,7 @@
 static const char* hostname_objid = "hostname";
 
 //Firmware image we are going to flash
-uint8_t g_firmwareImage[65536] __attribute__((aligned(16384))) __attribute__((section(".bssnoinit")));
+volatile uint8_t g_firmwareImage[65536] __attribute__((aligned(16384))) __attribute__((section(".bssnoinit")));
 
 //List of all valid commands
 enum cmdid_t
@@ -582,7 +582,7 @@ void TestCLISessionContext::OnFlashProgram()
 	//Validate the image starts with what we expect
 	//TODO: validate checksum and type
 	const uint8_t magic[] = { 'S', 'T', 'M', 0x32};
-	if(0 != memcmp(g_firmwareImage, magic, sizeof(magic)))
+	if(0 != memcmp(const_cast<uint8_t*>(g_firmwareImage), magic, sizeof(magic)))
 	{
 		g_log(Logger::ERROR, "Bad magic number on image (expected %02x %02x %02x %02x, got %02x %02x %02x %02x\n",
 			magic[0], magic[1], magic[2], magic[3],
@@ -614,18 +614,21 @@ void TestCLISessionContext::OnFlashProgram()
 	}
 
 	g_log("Programming image at %08x to %08x\n", g_firmwareImage, imageBase);
+	LogIndenter li(g_log);
+
 	EraseFlashBlock(imageBase, imageSize);
 
 	//Program it
 	{
 		g_log("Programming...\n");
-		LogIndenter li3(g_log);
-		g_flash->Write(reinterpret_cast<uint8_t*>(imageBase), g_firmwareImage, sizeof(g_firmwareImage));
+		g_flash->Write(
+			reinterpret_cast<uint8_t*>(imageBase),
+			const_cast<uint8_t*>(g_firmwareImage),
+			sizeof(g_firmwareImage));
 	}
 
 	{
 		g_log("Verifying...\n");
-		LogIndenter li3(g_log);
 
 		uint8_t tmp[128] = {0};
 		for(uintptr_t offset=0; offset<sizeof(g_firmwareImage); offset += sizeof(tmp))

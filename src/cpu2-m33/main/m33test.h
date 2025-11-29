@@ -34,6 +34,6 @@
 #include <cli/UARTOutputStream.h>
 #include <multicore/IPCDescriptorTable.h>
 
-extern uint8_t g_firmwareImage[65536];
+extern volatile uint8_t g_firmwareImage[65536];
 
 #endif

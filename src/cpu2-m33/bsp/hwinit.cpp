@@ -313,14 +313,16 @@ void InitQSPI()
 	LogIndenter li(g_log);
 
 	//Configure the GPIOs
-	static GPIOPin csn(&GPIOD, 3, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
-	static GPIOPin sck(&GPIOD, 0, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
-	static GPIOPin dq0(&GPIOD, 4, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
-	static GPIOPin dq1(&GPIOD, 5, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
-	static GPIOPin dq2(&GPIOD, 6, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
-	static GPIOPin dq3(&GPIOD, 7, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_FAST, 10);
+	static GPIOPin csn(&GPIOD, 3, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_VERYFAST, 10);
+	static GPIOPin sck(&GPIOD, 0, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_VERYFAST, 10);
+	static GPIOPin dq0(&GPIOD, 4, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_VERYFAST, 10);
+	static GPIOPin dq1(&GPIOD, 5, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_VERYFAST, 10);
+	//static GPIOPin dq2(&GPIOD, 6, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_VERYFAST, 10);
+	//static GPIOPin dq3(&GPIOD, 7, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_VERYFAST, 10);
 
-	//Set pullup on  WP#
+	//Set pullup on WP#
+	static GPIOPin dq2(&GPIOD, 6, GPIOPin::MODE_INPUT, GPIOPin::SLEW_VERYFAST, 10);
+	static GPIOPin dq3(&GPIOD, 7, GPIOPin::MODE_INPUT, GPIOPin::SLEW_VERYFAST, 10);
 	dq2.SetPullMode(GPIOPin::PULL_UP);
 
 	//Initialize the OCTOSPI itself
@@ -331,10 +333,10 @@ void InitQSPI()
 	RCCHelper::SetCrossbarMux(RCC_ck_ker_ospi1, RCC_XBAR_PLL4);
 
 	g_log("Waiting...\n");
-	g_logTimer.Sleep(20000);
+	g_logTimer.Sleep(10000);
 
-	//Set up the QSPI flash to 25 MHz clock (100 MHz / 4)
-	static OctoSPI_SpiFlashInterface flash(&OCTOSPI1, 64 * 1024 * 1024, 4);
+	//Set up the QSPI flash to 50 MHz clock (100 MHz / 2)
+	static OctoSPI_SpiFlashInterface flash(&OCTOSPI1, 64 * 1024 * 1024, 2);
 	flash.Discover();
 	g_flash = &flash;
 }

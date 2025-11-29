@@ -73,7 +73,19 @@ void RemoteLoggerTask::Iteration()
 		uint32_t readSize = m_logChannels[i]->GetSecondaryFifo().Pop(reinterpret_cast<uint8_t*>(tmp));
 		if(readSize == 0)
 			continue;
+
+		//Sanity check
+		//But if we trigger this, did the A35 already scribble all over our memory?
+		if(readSize > LOG_BUFFER_SIZE)
+		{
+			g_log(Logger::ERROR, "Got overly long log block (%u, should be at most %u) from core %u\n",
+				readSize, LOG_BUFFER_SIZE, i);
+			readSize = LOG_BUFFER_SIZE;
+		}
+
 		tmp[readSize] = '\0';
+
+		//g_log("Got %u bytes from core %u\n", readSize, i);
 
 		//Read and process one line at a time
 		const char* pline = tmp;
