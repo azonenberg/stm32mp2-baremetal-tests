@@ -57,20 +57,22 @@ Timer g_logTimer(&TIM3, Timer::FEATURE_GENERAL_PURPOSE, 20000);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Page tables
 
+const uint64_t leafPageSize = 2*1024*1024;
+
 /*
 	Level 1 page table, each entry is 1GB (0x4000_0000).
 	Can cover up to 512GB but we only fill out the first 16 entries because we only have 34 bits of virtual
 	address space enabled in TCR_EL3.
  */
-PageTable<1024*1024*1024, 16> g_level1PageTable __attribute__((aligned(4096)));
+PageTable<512*leafPageSize, 0x0000'0000, 16> g_level1PageTable __attribute__((aligned(4096)));
 
 //Level 2 page table covering 0000_0000 to 3fff_ffff, each entry is 2 MB (0x20_0000)
 //Mostly on chip SRAM but also covers PCIe BAR region
-PageTable<2*1024*1024, 512> g_level2PageTable_0to3 __attribute__((aligned(4096)));
+PageTable<leafPageSize, 0x0000'0000> g_level2PageTable_0to3 __attribute__((aligned(4096)));
 
 //Level 2 page table covering 4000_0000 to 7fff_ffff, each entry is 2 MB (0x20_0000)
 //Peripherals, OCTOSPI, FMC NOR
-PageTable<2*1024*1024, 512> g_level2PageTable_4to7 __attribute__((aligned(4096)));
+PageTable<leafPageSize, 0x4000'0000> g_level2PageTable_4to7 __attribute__((aligned(4096)));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Low level init
@@ -91,14 +93,6 @@ void BSP_InitPower()
 
 void BSP_InitMemory()
 {
-	//Zero out the root page table
-	g_level1PageTable.Clear();
-
-	//g_level1PageTable.SetLeafEntry(0x0000'0000, 0x0000'0000, false, MAIR_IDX_NORMAL);	//All RAM/ROM
-	g_level1PageTable.SetLeafEntry(0x4000'0000, 0x4000'0000, false, MAIR_IDX_DEVICE);	//Peripherals, OCTOSPI, FMC
-	//We don't have DDR set up yet so leave those entries as blank (fault)
-	//as well as anything past the end of DDR
-
 	//Level 2 page table for on chip SRAM
 	g_level2PageTable_0to3.Clear();
 	//Do not create a mapping for ROM, we want it unmapped so null pointers segfault!
@@ -108,17 +102,25 @@ void BSP_InitMemory()
 	g_level2PageTable_0to3.SetLeafEntry(0x2000'0000, 0x2000'0000, true, MAIR_IDX_NORMAL);	//On chip SRAM, nonsec, NX
 	g_level2PageTable_0to3.SetLeafEntry(0x3000'0000, 0x3000'0000, true, MAIR_IDX_NORMAL);	//On chip SRAM, sec, NX
 
+	//Level 2 page table for peripherals, OCTOSPI, FMC
+	g_level2PageTable_4to7.Clear();
+	for(uint64_t base=0x4000'0000; base<0x6000'0000; base += g_level2PageTable_4to7.GetEntrySize())	//SFRs are NX device
+		g_level2PageTable_4to7.SetLeafEntry(base,  base, true, MAIR_IDX_DEVICE);
+	//Don't create mappings for OCTOSPI and FMC at this stage since we don't use those
+
 	//Set up level 1 page table pointing to the level 2 tables
+	g_level1PageTable.Clear();
 	g_level1PageTable.SetChildEntry(0x0000'0000, g_level2PageTable_0to3);
+	g_level1PageTable.SetChildEntry(0x4000'0000, g_level2PageTable_4to7);
+	//We don't have DDR set up yet so leave those entries as blank (fault)
+	//as well as anything past the end of DDR
 
-	//Make sure all of the page table entries commit before we turn on the MMU
+	//Make sure all of the page table entries commit, then actually turn on the core 0 MMU
 	asm("dmb st");
-
-	//Actually turn on the MMU
 	BSP_InitMMU();
 }
 
-//called by BSP_InitMemory on core 0 and InitializeCore1 on core 1
+//called by BSP_InitMemory on core 0 and by InitializeCore1 on core 1
 extern "C" void BSP_InitMMU()
 {
 	//Turn on the MMU
