@@ -35,6 +35,7 @@
 #include <core/platform.h>
 #include "hwinit.h"
 #include <multicore/MulticoreLogDevice.h>
+#include <peripheral/PageTable.h>
 
 /*
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,12 +58,19 @@ Timer g_logTimer(&TIM3, Timer::FEATURE_GENERAL_PURPOSE, 20000);
 // Page tables
 
 /*
-	Level 1 page table, each entry is 1GB.
+	Level 1 page table, each entry is 1GB (0x4000_0000).
 	Can cover up to 512GB but we only fill out the first 16 entries because we only have 34 bits of virtual
 	address space enabled in TCR_EL3.
  */
-uint64_t g_level1Pagetable[16] __attribute__((aligned(4096)));
-const uint32_t g_level1PageEntrySize = 1024 * 1024 * 1024;
+PageTable<1024*1024*1024, 16> g_level1PageTable __attribute__((aligned(4096)));
+
+//Level 2 page table covering 0000_0000 to 3fff_ffff, each entry is 2 MB (0x20_0000)
+//Mostly on chip SRAM but also covers PCIe BAR region
+PageTable<2*1024*1024, 512> g_level2PageTable_0to3 __attribute__((aligned(4096)));
+
+//Level 2 page table covering 4000_0000 to 7fff_ffff, each entry is 2 MB (0x20_0000)
+//Peripherals, OCTOSPI, FMC NOR
+PageTable<2*1024*1024, 512> g_level2PageTable_4to7 __attribute__((aligned(4096)));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Low level init
@@ -81,70 +89,30 @@ void BSP_InitPower()
 	//TODO: any debug init needed to turn on trace or something?
 }
 
-uint64_t MakePageTableEntry(uint64_t addr, bool nx, mairidx_t idx);
-
-uint64_t MakePageTableEntry(uint64_t addr, bool nx, mairidx_t idx)
-{
-	uint64_t ret = 0;
-
-	//bit 54 is UXN, not used at EL3
-
-	if(nx)
-		ret |= (1LL << 53);
-
-	//bit 52, contiguous blocks - we don't do that yet
-
-	//Mix in the block address
-	ret |= (addr & 0xf'ff80'0000ULL);
-
-	//bit 11 is nG, not used at EL3
-
-	//bit 10: AF = access flag, pre-set so don't generate a fault
-	ret |= (1 << 10);
-
-	//bit 9:8: SH (shareability), default to zero (non-shareable)
-	//for normal memory, mark as inner shareable
-	if(idx == MAIR_IDX_NORMAL)
-		ret |= (3 << 8);
-
-	//bit 7:6: AP (access permissions), default to zero (kernel r/w)
-
-	//bit 5 is NS, default to zero (secure)
-
-	//Lower attributes
-	ret |= (idx << 2);
-
-	//bit 2 is descriptor type, default is zero (block)
-
-	//Valid flag: entry is valid
-	ret |= 1;
-
-	return ret;
-}
-
 void BSP_InitMemory()
 {
-	//Clear the page table to blank (always fault) by default
-	//Can't use memset before MMU is initialized
-	const uint32_t numLevel1Entries = sizeof(g_level1Pagetable)/sizeof(uint64_t);
-	for(uint32_t i=0; i<numLevel1Entries; i++)
-		g_level1Pagetable[i] = 0;
+	//Zero out the root page table
+	g_level1PageTable.Clear();
 
-	//First entry is 0000_0000 to 3fff_ffff, covers all of on chip RAM and ROM
-	//For now, this is just normal memory
-	g_level1Pagetable[0x0000'0000 / g_level1PageEntrySize] = MakePageTableEntry(
-		0x0000'0000,
-		false,
-		MAIR_IDX_NORMAL);
-
-	//Second entry is 4000_0000 to 7fff_ffff, covers all peripherals plus OCTOSPI and FMC
-	//For now, this is all device
-	g_level1Pagetable[0x4000'0000 / g_level1PageEntrySize] = MakePageTableEntry(
-		0x4000'0000,
-		false,
-		MAIR_IDX_DEVICE);
-
+	//g_level1PageTable.SetLeafEntry(0x0000'0000, 0x0000'0000, false, MAIR_IDX_NORMAL);	//All RAM/ROM
+	g_level1PageTable.SetLeafEntry(0x4000'0000, 0x4000'0000, false, MAIR_IDX_DEVICE);	//Peripherals, OCTOSPI, FMC
 	//We don't have DDR set up yet so leave those entries as blank (fault)
+	//as well as anything past the end of DDR
+
+	//Level 2 page table for on chip SRAM
+	g_level2PageTable_0to3.Clear();
+	//Do not create a mapping for ROM, we want it unmapped so null pointers segfault!
+	g_level2PageTable_0to3.SetLeafEntry(0x0a00'0000, 0x0a00'0000, false, MAIR_IDX_NORMAL);	//On chip SRAM, boot/nonsec
+	g_level2PageTable_0to3.SetLeafEntry(0x0e00'0000, 0x0e00'0000, false, MAIR_IDX_NORMAL);	//On chip SRAM, boot/sec
+	//TODO: PCIe BAR region at 0x1000'0000 to 1fff'ffff
+	g_level2PageTable_0to3.SetLeafEntry(0x2000'0000, 0x2000'0000, true, MAIR_IDX_NORMAL);	//On chip SRAM, nonsec, NX
+	g_level2PageTable_0to3.SetLeafEntry(0x3000'0000, 0x3000'0000, true, MAIR_IDX_NORMAL);	//On chip SRAM, sec, NX
+
+	//Set up level 1 page table pointing to the level 2 tables
+	g_level1PageTable.SetChildEntry(0x0000'0000, g_level2PageTable_0to3);
+
+	//Make sure all of the page table entries commit before we turn on the MMU
+	asm("dmb st");
 
 	//Actually turn on the MMU
 	BSP_InitMMU();
@@ -154,7 +122,7 @@ void BSP_InitMemory()
 extern "C" void BSP_InitMMU()
 {
 	//Turn on the MMU
-	InitializeMMU(g_level1Pagetable);
+	InitializeMMU(g_level1PageTable.GetData());
 }
 
 void BSP_InitClocks()
