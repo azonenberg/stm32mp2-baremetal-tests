@@ -82,16 +82,18 @@ void BSP_MainLoopIteration()
 	/* nothing here */
 }
 
-/*
-	Initialize on device power domains
- */
 void BSP_InitPower()
 {
 	//Looks like hardware/bootrom does all of this for us on the A35, nothing needed on our side
-	//TODO: any debug init needed to turn on trace or something?
+	//TODO: any debug init needed to turn on trace or something? Do we have to set up somethign on the PMIC?
 }
 
 void BSP_InitMemory()
+{
+	//handled by the M33
+}
+
+void BSP_InitPageTables()
 {
 	//Level 2 page table for on chip SRAM
 	g_level2PageTable_0to3.Clear();
@@ -114,13 +116,8 @@ void BSP_InitMemory()
 	g_level1PageTable.SetChildEntry(0x4000'0000, g_level2PageTable_4to7);
 	//We don't have DDR set up yet so leave those entries as blank (fault)
 	//as well as anything past the end of DDR
-
-	//Make sure all of the page table entries commit, then actually turn on the core 0 MMU
-	asm("dmb st");
-	BSP_InitMMU();
 }
 
-//called by BSP_InitMemory on core 0 and by InitializeCore1 on core 1
 extern "C" void BSP_InitMMU()
 {
 	//Turn on the MMU
