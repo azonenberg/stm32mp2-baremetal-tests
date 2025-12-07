@@ -31,6 +31,9 @@ add_compile_definitions(MAX_TIMER_TASKS=3)
 # We're building a RAM image not a flash/XIP image so no need to copy data to flash
 add_compile_definitions(RAM_IMAGE=1)
 
+# Logging buffer size (must match M33 side)
+add_compile_definitions(LOG_TXBUF_SIZE=2048)
+
 ########################################################################################################################
 # Build all of our other dependencies
 
