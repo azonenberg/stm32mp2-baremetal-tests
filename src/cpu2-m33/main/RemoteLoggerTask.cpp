@@ -30,11 +30,13 @@
 #include "m33test.h"
 #include "RemoteLoggerTask.h"
 
-#define LOG_BUFFER_SIZE 256
+#ifndef LOG_TXBUF_SIZE
+#define LOG_TXBUF_SIZE 256
+#endif
 
 //RX buffer for logger
 char g_coreLogChannelName[NUM_SECONDARY_CORES][16] __attribute__((section(".ipcbuf")));
-volatile uint8_t g_coreLogBuffer[NUM_SECONDARY_CORES][LOG_BUFFER_SIZE] __attribute__((section(".ipcbuf")));
+volatile uint8_t g_coreLogBuffer[NUM_SECONDARY_CORES][LOG_TXBUF_SIZE] __attribute__((section(".ipcbuf")));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Construction / destruction
@@ -64,8 +66,8 @@ void RemoteLoggerTask::Iteration()
 {
 	//We can't bound how much data the remote side will give us, or how long the lines will be
 	//so we need two full max-sized buffers on the stack (512 bytes)
-	char tmp[LOG_BUFFER_SIZE + 1];
-	char tmp2[LOG_BUFFER_SIZE + 1];
+	char tmp[LOG_TXBUF_SIZE + 1];
+	char tmp2[LOG_TXBUF_SIZE + 1];
 
 	for(uint32_t i=0; i<NUM_SECONDARY_CORES; i++)
 	{
@@ -76,11 +78,11 @@ void RemoteLoggerTask::Iteration()
 
 		//Sanity check
 		//But if we trigger this, did the A35 already scribble all over our memory?
-		if(readSize > LOG_BUFFER_SIZE)
+		if(readSize > LOG_TXBUF_SIZE)
 		{
 			g_log(Logger::ERROR, "Got overly long log block (%u, should be at most %u) from core %u\n",
-				readSize, LOG_BUFFER_SIZE, i);
-			readSize = LOG_BUFFER_SIZE;
+				readSize, LOG_TXBUF_SIZE, i);
+			readSize = LOG_TXBUF_SIZE;
 		}
 
 		tmp[readSize] = '\0';
@@ -89,7 +91,7 @@ void RemoteLoggerTask::Iteration()
 
 		//Read and process one line at a time
 		const char* pline = tmp;
-		const char* pend = tmp + LOG_BUFFER_SIZE;
+		const char* pend = tmp + LOG_TXBUF_SIZE;
 		while( (pline < pend) && (pline[0] != '\0') )
 		{
 			//Look for newline
