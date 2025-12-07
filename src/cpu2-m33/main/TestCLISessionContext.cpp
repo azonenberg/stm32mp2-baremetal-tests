@@ -349,7 +349,7 @@ void TestCLISessionContext::LoadHostname()
 	else
 		strncpy(m_hostname, "dumptruck", sizeof(m_hostname)-1);
 		*/
-	strncpy(m_hostname, "stm32mp257-ev1", sizeof(m_hostname)-1);
+	strncpy(m_hostname, "stm32mp257f-ev1", sizeof(m_hostname)-1);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
