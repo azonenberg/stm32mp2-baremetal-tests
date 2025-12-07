@@ -203,8 +203,6 @@ void BSP_InitClocks()
 	RCCHelper::SetCrossbarDivider(RCC_ck_icn_hs_mcu, RCC_PREDIV_1, 6);
 	RCCHelper::SetCrossbarMux(RCC_ck_icn_hs_mcu, RCC_XBAR_PLL4);
 
-	//TODO: which if any of these will be borked by the bootrom when we start the A35??
-
 	//ck_icn_sdmmc to AHB5 bus is max 200 MHz, runs at PLL4 divided by 12 so 200 MHz
 	RCCHelper::SetCrossbarDivider(RCC_ck_icn_sdmmc, RCC_PREDIV_2, 6);
 	RCCHelper::SetCrossbarMux(RCC_ck_icn_sdmmc, RCC_XBAR_PLL4);
@@ -224,6 +222,12 @@ void BSP_InitClocks()
 	RCCHelper::SetCrossbarMux(RCC_ck_icn_nic, RCC_XBAR_PLL4);
 
 	//Don't set up ck_icn_vid since we're not using any of that at the moment
+
+	//Set up clock to the USB3/PCIe block, runs at PLL4 divided by 96 (25 MHz)
+	RCCHelper::SetCrossbarDivider(RCC_ck_ker_usb3pciephy, RCC_PREDIV_4, 24);
+	RCCHelper::SetCrossbarMux(RCC_ck_ker_usb3pciephy, RCC_XBAR_PLL4);
+
+	//ck_cpu1_ext2f is max 400 MHz. Not being used
 
 	//Configure PF11 as MCO1
 	GPIOPin mco1(&GPIOF, 11, GPIOPin::MODE_PERIPHERAL, GPIOPin::SLEW_SLOW, 1);
@@ -286,8 +290,20 @@ void BSP_Init()
 {
 	InitGPIOs();
 	InitQSPI();
-
 	App_Init();
+
+	//Even though PCIe is handled by the A35, we're booting in M33-TD mode
+	//So we're the trusted domain, and we have to do configuration of the RISAF so the A35 is allowed to access it
+	//Just open up the entire PCIe AXI space to the A35
+	static RISAF pcieRISAF(&RISAF5);
+	pcieRISAF.ConfigureBaseRegion(
+		0,					//region 0
+		0x0000'0000,		//start: beginning of axi space
+		0x0fff'ffff,		//end: end of axi space
+		CID_MASK_A35,		//A35 can write
+		CID_MASK_A35,		//A35 can read
+		0,					//both privileged and unprivileged accesses allowed
+		true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

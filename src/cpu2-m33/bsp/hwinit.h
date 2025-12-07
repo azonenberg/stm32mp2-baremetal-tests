@@ -41,6 +41,7 @@
 #include <peripheral/MPU.h>
 #include <peripheral/OctoSPI.h>
 #include <peripheral/Power.h>
+#include <peripheral/RISAF.h>
 //#include <peripheral/SPI.h>
 #include <peripheral/UART.h>
 
