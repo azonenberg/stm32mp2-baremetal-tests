@@ -38,6 +38,7 @@
 //#include <peripheral/I2C.h>
 //#include <peripheral/OctoSPI.h>
 //#include <peripheral/Power.h>
+#include <peripheral/PCIE.h>
 //#include <peripheral/SPI.h>
 //#include <peripheral/UART.h>
 
@@ -47,6 +48,7 @@
 
 ///@brief Initialize application-specific hardware stuff
 extern void App_Init();
+void InitPCIe();
 /*
 //Common ISRs used by application and bootloader
 void USART6_Handler();

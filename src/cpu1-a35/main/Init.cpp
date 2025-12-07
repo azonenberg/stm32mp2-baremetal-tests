@@ -29,31 +29,26 @@
 
 #include "a35test.h"
 /*
-//#include "LEDTask.h"
 #include <math.h>
 //#include <peripheral/DWT.h>
 //#include "ITMTask.h"
-#include "LocalConsoleTask.h"
-
+*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Task tables
 
-etl::vector<Task*, MAX_TASKS>  g_tasks;
+etl::vector<Task*, MAX_TASKS>  g_tasks[NUM_SECONDARY_CORES];
 etl::vector<TimerTask*, MAX_TIMER_TASKS>  g_timerTasks;
 
+/*
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Peripheral initialization
 */
 void App_Init()
 {
-	//TODO do stuff
-
-	/*
 	g_log("Application initialization\n");
 	LogIndenter li(g_log);
 
-	g_log("Firmware image partition in RAM is at %08x\n", g_firmwareImage);
-	*/
+	//g_log("Firmware image partition in RAM is at %08x\n", g_firmwareImage);
 
 	//RCCHelper::Enable(&_RTC);
 
@@ -72,31 +67,20 @@ void App_Init()
 		DWT::EnablePCSampling(DWT::PC_SAMPLE_SLOW);
 		ITM::EnableDwtForwarding();
 	#endif
+	*/
 
-	static LEDTask ledTask;
-	static ButtonTask buttonTask;
-	static DumptruckSuperSPIServer spiserver(g_spi);
-	static SensorTask sensorTask;
+	/*
 	#ifdef _DEBUG
 		static ITMTask itmTask;
 	#endif
 	*/
 	/*
-	static LocalConsoleTask localConsoleTask;
-
-	g_tasks.push_back(&localConsoleTask);
-	*/
-	/*
-	g_tasks.push_back(&ledTask);
-	g_tasks.push_back(&buttonTask);
-	g_tasks.push_back(&g_super);
-	g_tasks.push_back(&spiserver);
-	g_tasks.push_back(&sensorTask);
 	#ifdef _DEBUG
 		g_tasks.push_back(&itmTask);
 	#endif
+	*/
 
-	g_timerTasks.push_back(&ledTask);
+	/*
 	#ifdef _DEBUG
 		g_timerTasks.push_back(&itmTask);
 	#endif
