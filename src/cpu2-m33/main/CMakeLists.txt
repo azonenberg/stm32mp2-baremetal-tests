@@ -1,6 +1,7 @@
 add_executable(main
 	Init.cpp
 	RemoteLoggerTask.cpp
+	RISAFMonitorTask.cpp
 	TestCLISessionContext.cpp
 	vectors.cpp)
 

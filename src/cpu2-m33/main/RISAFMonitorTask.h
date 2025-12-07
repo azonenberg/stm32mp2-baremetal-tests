@@ -27,72 +27,22 @@
 *                                                                                                                      *
 ***********************************************************************************************************************/
 
-#include "m33test.h"
-//#include "LEDTask.h"
-#include <math.h>
-//#include <peripheral/DWT.h>
-//#include "ITMTask.h"
-#include "LocalConsoleTask.h"
-#include "RemoteLoggerTask.h"
-#include "RISAFMonitorTask.h"
+#ifndef RISAFMonitorTask_h
+#define RISAFMonitorTask_h
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Task tables
+#include <core/Task.h>
+#include <multicore/IPCDescriptorTable.h>
 
-etl::vector<Task*, MAX_TASKS>  g_tasks;
-etl::vector<TimerTask*, MAX_TIMER_TASKS>  g_timerTasks;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Peripheral initialization
-
-void App_Init()
+class RISAFMonitorTask : public Task
 {
-	g_log("Application initialization\n");
-	LogIndenter li(g_log);
+public:
+	RISAFMonitorTask();
 
-	g_log("Firmware image partition in RAM is at %08x\n", g_firmwareImage);
+	virtual void Iteration() override;
 
-	//RCCHelper::Enable(&_RTC);
+protected:
+	void Check(volatile risaf_t* risaf, int i);
+};
 
-	//Format version string
-	/*
-	StringBuffer buf(g_version, sizeof(g_version));
-	static const char* buildtime = __TIME__;
-	buf.Printf("%s %c%c%c%c%c%c",
-		__DATE__, buildtime[0], buildtime[1], buildtime[3], buildtime[4], buildtime[6], buildtime[7]);
-	g_log("Firmware version %s\n", g_version);
-	*/
-	/*
-	//Start tracing
-	#ifdef _DEBUG
-		ITM::Enable();
-		DWT::EnablePCSampling(DWT::PC_SAMPLE_SLOW);
-		ITM::EnableDwtForwarding();
-	#endif
+#endif
 
-	#ifdef _DEBUG
-		static ITMTask itmTask;
-	#endif
-	*/
-	static LocalConsoleTask localConsoleTask;
-	static RemoteLoggerTask remoteLoggerTask;
-	static RISAFMonitorTask risafMonitorTask;
-
-	g_tasks.push_back(&localConsoleTask);
-	g_tasks.push_back(&remoteLoggerTask);
-	g_tasks.push_back(&risafMonitorTask);
-	/*
-	#ifdef _DEBUG
-		g_tasks.push_back(&itmTask);
-	#endif
-
-	#ifdef _DEBUG
-		g_timerTasks.push_back(&itmTask);
-	#endif
-	*/
-
-	g_ipcDescriptorTable.Print();
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Main loop

@@ -28,71 +28,58 @@
 ***********************************************************************************************************************/
 
 #include "m33test.h"
-//#include "LEDTask.h"
-#include <math.h>
-//#include <peripheral/DWT.h>
-//#include "ITMTask.h"
-#include "LocalConsoleTask.h"
-#include "RemoteLoggerTask.h"
 #include "RISAFMonitorTask.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Task tables
+// Construction / destruction
 
-etl::vector<Task*, MAX_TASKS>  g_tasks;
-etl::vector<TimerTask*, MAX_TIMER_TASKS>  g_timerTasks;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Peripheral initialization
-
-void App_Init()
+RISAFMonitorTask::RISAFMonitorTask()
 {
-	g_log("Application initialization\n");
-	LogIndenter li(g_log);
 
-	g_log("Firmware image partition in RAM is at %08x\n", g_firmwareImage);
-
-	//RCCHelper::Enable(&_RTC);
-
-	//Format version string
-	/*
-	StringBuffer buf(g_version, sizeof(g_version));
-	static const char* buildtime = __TIME__;
-	buf.Printf("%s %c%c%c%c%c%c",
-		__DATE__, buildtime[0], buildtime[1], buildtime[3], buildtime[4], buildtime[6], buildtime[7]);
-	g_log("Firmware version %s\n", g_version);
-	*/
-	/*
-	//Start tracing
-	#ifdef _DEBUG
-		ITM::Enable();
-		DWT::EnablePCSampling(DWT::PC_SAMPLE_SLOW);
-		ITM::EnableDwtForwarding();
-	#endif
-
-	#ifdef _DEBUG
-		static ITMTask itmTask;
-	#endif
-	*/
-	static LocalConsoleTask localConsoleTask;
-	static RemoteLoggerTask remoteLoggerTask;
-	static RISAFMonitorTask risafMonitorTask;
-
-	g_tasks.push_back(&localConsoleTask);
-	g_tasks.push_back(&remoteLoggerTask);
-	g_tasks.push_back(&risafMonitorTask);
-	/*
-	#ifdef _DEBUG
-		g_tasks.push_back(&itmTask);
-	#endif
-
-	#ifdef _DEBUG
-		g_timerTasks.push_back(&itmTask);
-	#endif
-	*/
-
-	g_ipcDescriptorTable.Print();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Main loop
+// Pop stuff
+
+void RISAFMonitorTask::Iteration()
+{
+	Check(&RISAF1, 1);
+	Check(&RISAF2, 2);
+	//there is no RISAF3?
+	Check(&RISAF4, 4);
+	Check(&RISAF5, 5);
+}
+
+void RISAFMonitorTask::Check(volatile risaf_t* risaf, int i)
+{
+	if(risaf->IASR & RISAF_IASR_CAEF)
+	{
+		g_log(Logger::ERROR, "[RISAF%d]: Illegal access detected to configuration register\n", i);
+		risaf->IACR = RISAF_IASR_CAEF;
+	}
+
+	if(risaf->IASR & RISAF_IASR_IAEF0)
+	{
+		g_log(Logger::ERROR, "[RISAF%d]: Illegal access detected by checker 0: %s %s %s by CID%d to 0x%08x\n",
+			i,
+			(risaf->IAESR0 & RISAF_IAESR_IASEC) ? "secure" : "nonsecure",
+			(risaf->IAESR0 & RISAF_IAESR_IAPRIV) ? "privileged" : "unprivileged",
+			(risaf->IAESR0 & RISAF_IAESR_IANRW) ? "write" : "read",
+			risaf->IAESR0 & 7,
+			risaf->IADDR0);
+		risaf->IACR = RISAF_IASR_IAEF0;
+	}
+
+	if(risaf->IASR & RISAF_IASR_IAEF1)
+	{
+		g_log(Logger::ERROR, "[RISAF%d]: Illegal access detected by checker 1: %s %s %s by CID%d to 0x%08x\n",
+			i,
+			(risaf->IAESR1 & RISAF_IAESR_IASEC) ? "secure" : "nonsecure",
+			(risaf->IAESR1 & RISAF_IAESR_IAPRIV) ? "privileged" : "unprivileged",
+			(risaf->IAESR1 & RISAF_IAESR_IANRW) ? "write" : "read",
+			risaf->IAESR1 & 7,
+			risaf->IADDR1);
+
+		risaf->IACR = RISAF_IASR_IAEF1;
+	}
+}
