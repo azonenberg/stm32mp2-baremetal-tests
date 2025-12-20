@@ -246,11 +246,12 @@ void InitPCIe()
 	//TODO: troubleshoot 5 GT/s link startup, see if it actually works as we expect
 	g_log("PHY init\n");
 	PCIE::Initialize(
-		PCIE::REFCLK_EXT_100MHZ,	//REFCLK_INT_25MHZ doesnt work on the EV1
+		PCIE::REFCLK_EXT_100MHZ,	//REFCLK_INT_25MHZ doesn't work reliably on the EV1
 		false);						//Not training to full speed on link up for now, stay at 2.5 GT/s
 
 	//Reset the link partner
 	g_log("Reset device\n");
+	g_logDevice.Flush();
 	GPIOPin perst(&GPIOJ, 8, GPIOPin::MODE_OUTPUT, GPIOPin::SLEW_SLOW);
 	perst = 0;
 	g_logTimer.Sleep(5);
@@ -365,30 +366,40 @@ void EnumeratePCIe()
 	}
 
 	//iATU region 0: configuration access
+	//Map this near the very end of the PCIe region so it's not in the way of anything else
 	PCIE::SetupOutboundATURegion(
 		0,							//ATU region
 		PCIE_TLP_TYPE_CONFIG,		//Convert to configuration TLP
-		0x1000'0000,				//CPU address start
-		0x1000'ffff,				//CPU address end
-		0x0100'0000);				//Bus address
+		0x1fff'0000,				//CPU address start
+		0x1fff'ffff,				//CPU address end
+		0x0100'0000);				//BDF base: 01:00.0
 
 	//Inbound region 0: DMA reads from peripheral I guess? We can tweak this later
+	/*
 	PCIE::SetupInboundATURegion(
 		0,
 		PCIE_TLP_TYPE_NORMAL,
 		0x8000'0000,				//start of DRAM
 		0xffff'ffff,				//end of lower 2GB of DRAM
 		0x8000'0000);				//passthrough mapping
+	*/
 
-	//Configure the second iATU region to match Linux
+	//Configure the second iATU region as passthrough
 	PCIE::SetupOutboundATURegion(
 		1,							//ATU region
 		PCIE_TLP_TYPE_NORMAL,		//Convert to normal memory access TLP
-		0x1002'0000,				//CPU address start
+		0x1000'0000,				//CPU address start
 		0x17ff'ffff,				//CPU address end
-		0x0102'0000);				//Bus address
+		0x0000'0000);				//Bus address
 	PCIE::ClearInboundATURegion(1);
 
+	//Not using regions 2/3 in either direction
+	PCIE::ClearOutboundATURegion(2);
+	PCIE::ClearInboundATURegion(2);
+	PCIE::ClearOutboundATURegion(3);
+	PCIE::ClearInboundATURegion(3);
+
+	/*
 	//Configure the third iATU region to match Linux
 	PCIE::SetupOutboundATURegion(
 		2,							//ATU region
@@ -396,7 +407,7 @@ void EnumeratePCIe()
 		0x1800'0000,				//CPU address start
 		0x1fff'ffff,				//CPU address end
 		0x1800'0000);				//Bus address
-	PCIE::ClearInboundATURegion(2);
+
 
 	//Fourth iATU region
 	PCIE::SetupOutboundATURegion(
@@ -405,25 +416,35 @@ void EnumeratePCIe()
 		0x1001'0000,				//CPU address start
 		0x1001'ffff,				//CPU address end
 		0x1001'0000);				//Bus address
-	PCIE::ClearInboundATURegion(3);
+	*/
+
+	//Enumerate it
+	volatile uint32_t* iobase = reinterpret_cast<volatile uint32_t*>(0x1fff'0000);
+	volatile uint32_t* membase = reinterpret_cast<volatile uint32_t*>(0x1000'0000);
+	g_log("%02x:%02x.%d (%08x)\n", 1, 0, 0, iobase);
+	PrintPCIeDevice(iobase);
 
 	//Trigger the scope
 	g_triggerOut = 1;
 
-	//Send a vendor specific DLLP
-	//PCIE::SendVendorSpecificDLLP(0x112233);
-
+	/*
 	//Send a test write to each iATU region
-	volatile uint32_t* iobase = reinterpret_cast<volatile uint32_t*>(0x1000'0000);
 	iobase[0x0000'0000/4] = 0xdeadbeef;
 	asm("dmb st");
 	iobase[0x0002'0000/4] = 0xfeedface;
 	asm("dmb st");
 	//g_log("Readback: %08x\n", iobase[0]);
+	*/
 
-	//Enumerate it
-	g_log("%02x:%02x.%d (%08x)\n", 1, 0, 0, iobase);
-	PrintPCIeDevice(iobase);
+	//Do a large block write
+	uint32_t foo[4] =
+	{
+		0x11223344,
+		0x55667788,
+		0x99aabbcc,
+		0xddeeff00
+	};
+	memcpy((uint32_t*)membase, foo, sizeof(foo));
 }
 
 /**
