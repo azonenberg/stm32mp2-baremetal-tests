@@ -11334,7 +11334,7 @@
 		)
 		(uuid "3f5c2cfd-7493-4c9d-bc3a-e311f030c6a9")
 	)
-	(text "VDDIOx\nDatasheet calls for 1 per bank, do one per ball to be conservative"
+	(text "VDDIOx\nDatasheet calls for 1 per bank, do one extra to be conservative\n(tried one per ball but pinout didn't fit well)"
 		(exclude_from_sim no)
 		(at 142.24 271.78 0)
 		(effects
@@ -11477,7 +11477,7 @@
 		)
 		(uuid "e5c38494-2167-44d9-84b3-42e8a73fe87f")
 	)
-	(text "VDDCSI/DSI/LVDS etc\nDatasheet calls for 0.1 uF, do 0.47 for commonality w/ other stuff"
+	(text "VDDCSI/DSI/LVDS etc\nDatasheet calls for 0.1 uF, do 1 for commonality w/ other stuff"
 		(exclude_from_sim no)
 		(at 142.24 185.42 0)
 		(effects
@@ -11698,6 +11698,12 @@
 		(uuid "301abfc2-def9-4cf6-8153-118d8ab87e8f")
 	)
 	(junction
+		(at 198.12 175.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "30c4368f-7f26-4927-90b4-17e323561202")
+	)
+	(junction
 		(at 175.26 260.35)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11770,12 +11776,6 @@
 		(uuid "3e8278e3-dd5d-40d9-8909-bc76e9fcbedb")
 	)
 	(junction
-		(at 198.12 175.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3f00b2fc-dcd5-464e-87ba-e8259a8f8feb")
-	)
-	(junction
 		(at 340.36 208.28)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11788,10 +11788,22 @@
 		(uuid "3fba83d7-4065-41bd-8ebf-f555c781dbc0")
 	)
 	(junction
+		(at 184.15 182.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "40d9a4b4-3d4d-4c2e-9377-9dd87930b3e6")
+	)
+	(junction
 		(at 212.09 215.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "42d2ea26-c849-4e3d-b488-ba1d2a7a0f9b")
+	)
+	(junction
+		(at 271.78 182.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "466c3c37-9d77-4e6d-9807-7d3f92df46fd")
 	)
 	(junction
 		(at 153.67 260.35)
@@ -11810,12 +11822,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "47b1588f-aaab-4cb0-ad5d-41f2fc554e90")
-	)
-	(junction
-		(at 156.21 175.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "47cac074-50cd-4bd8-9dc0-46d232c47d3d")
 	)
 	(junction
 		(at 101.6 212.09)
@@ -11878,18 +11884,6 @@
 		(uuid "5415f8df-8069-4663-98ef-7cf1957d7280")
 	)
 	(junction
-		(at 170.18 175.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "546f856b-8de7-4175-992a-a41be70f95a5")
-	)
-	(junction
-		(at 186.69 260.35)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "54746ede-d1ac-4e80-b7c8-09e2bc95d1ca")
-	)
-	(junction
 		(at 275.59 158.75)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11938,18 +11932,6 @@
 		(uuid "5ea843d0-3693-454b-8188-16f0f2b2c616")
 	)
 	(junction
-		(at 184.15 175.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "60bc1f1d-0cbd-4c52-a6ff-2db690749625")
-	)
-	(junction
-		(at 186.69 267.97)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "619d7e7d-b483-4221-acec-f93c1662bd97")
-	)
-	(junction
 		(at 101.6 168.91)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11990,12 +11972,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "695a2de3-aecb-4765-a43b-44654e9d0dd3")
-	)
-	(junction
-		(at 271.78 182.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6a51ad28-f978-442a-97a4-6b9def4641d0")
 	)
 	(junction
 		(at 101.6 171.45)
@@ -12118,12 +12094,6 @@
 		(uuid "8c5b35cb-a600-489a-8049-f88f3b43a759")
 	)
 	(junction
-		(at 170.18 182.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8c773e04-008c-4c55-9baf-5ff9e80d20db")
-	)
-	(junction
 		(at 124.46 189.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12200,6 +12170,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a4c580ca-56cf-4536-84a6-9bdea178411b")
+	)
+	(junction
+		(at 170.18 175.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "aa88f855-ee7c-419e-98d7-6d2f677b2c16")
 	)
 	(junction
 		(at 198.12 158.75)
@@ -12334,22 +12310,16 @@
 		(uuid "d45fe001-27dd-4ed4-88d6-058d5a4241ff")
 	)
 	(junction
-		(at 156.21 182.88)
+		(at 170.18 182.88)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "db57ef3d-982c-4304-98e8-76bc8fead5ef")
+		(uuid "d7067b06-a9cc-42fc-bb6f-23bff24ce351")
 	)
 	(junction
 		(at 328.93 200.66)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "dba68f6a-96c3-4944-affb-bb34b491a6c9")
-	)
-	(junction
-		(at 184.15 182.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dc35f4d9-cc5a-4a40-a4fd-cc03f3f2f96a")
 	)
 	(junction
 		(at 64.77 134.62)
@@ -12382,6 +12352,12 @@
 		(uuid "df7c5755-ccef-4cc3-8830-4378dfc9dec9")
 	)
 	(junction
+		(at 156.21 175.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e08e7cde-78fd-42b1-8435-dd9ddcbf2911")
+	)
+	(junction
 		(at 77.47 170.18)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12398,12 +12374,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e1481170-32e4-48f5-bc9e-613b9fc7f192")
-	)
-	(junction
-		(at 198.12 182.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e6d92ef1-3960-4cb2-ba38-2bea0380c0ab")
 	)
 	(junction
 		(at 101.6 194.31)
@@ -12454,6 +12424,12 @@
 		(uuid "f0eac666-131c-4f46-9304-2d62d64baf08")
 	)
 	(junction
+		(at 156.21 182.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f57afd83-41d7-43ec-b7b8-44be49a3bc01")
+	)
+	(junction
 		(at 36.83 172.72)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12464,6 +12440,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f650d2c1-a7a5-4682-861a-846f0657774e")
+	)
+	(junction
+		(at 198.12 182.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f85436fd-736b-4263-acc3-521d25b5e475")
 	)
 	(junction
 		(at 77.47 193.04)
@@ -12488,6 +12470,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fbf74b6d-ee78-43e1-b427-fe432b89a5e5")
+	)
+	(junction
+		(at 184.15 175.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fdb26229-dc1f-42a4-a230-b2d400f0be81")
 	)
 	(junction
 		(at 198.12 223.52)
@@ -12593,6 +12581,16 @@
 	)
 	(wire
 		(pts
+			(xy 198.12 182.88) (xy 212.09 182.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "058dbd51-e388-4f68-a6ab-d130df8fbb2c")
+	)
+	(wire
+		(pts
 			(xy 34.29 105.41) (xy 36.83 105.41)
 		)
 		(stroke
@@ -12683,7 +12681,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 182.88) (xy 184.15 182.88)
+			(xy 156.21 182.88) (xy 170.18 182.88)
 		)
 		(stroke
 			(width 0)
@@ -13043,6 +13041,16 @@
 	)
 	(wire
 		(pts
+			(xy 198.12 175.26) (xy 212.09 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42d72afc-2cba-4050-862c-06817700ec1c")
+	)
+	(wire
+		(pts
 			(xy 77.47 236.22) (xy 77.47 238.76)
 		)
 		(stroke
@@ -13123,23 +13131,13 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 182.88) (xy 212.09 182.88)
+			(xy 184.15 182.88) (xy 198.12 182.88)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "4da2b974-6d2e-45ab-a38e-b1e54fa94f0b")
-	)
-	(wire
-		(pts
-			(xy 186.69 267.97) (xy 198.12 267.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "509da631-cfe4-4554-bd92-85c95d2589e0")
 	)
 	(wire
 		(pts
@@ -13170,16 +13168,6 @@
 			(type default)
 		)
 		(uuid "526d6262-3e03-4983-9c20-75df12d73096")
-	)
-	(wire
-		(pts
-			(xy 186.69 260.35) (xy 198.12 260.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "52bbd567-fe03-4485-9d5c-f514994988ef")
 	)
 	(wire
 		(pts
@@ -13263,16 +13251,6 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 175.26) (xy 198.12 175.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "59e56b52-311a-4a4f-9077-09f1c04c19b4")
-	)
-	(wire
-		(pts
 			(xy 170.18 223.52) (xy 184.15 223.52)
 		)
 		(stroke
@@ -13310,16 +13288,6 @@
 			(type default)
 		)
 		(uuid "5c1f1842-93a4-4ae4-88b0-41c108ded11f")
-	)
-	(wire
-		(pts
-			(xy 156.21 175.26) (xy 170.18 175.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5d73f749-0344-4ad0-b6f2-ba1ee77704cf")
 	)
 	(wire
 		(pts
@@ -14033,6 +14001,16 @@
 	)
 	(wire
 		(pts
+			(xy 170.18 175.26) (xy 184.15 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bac05d96-56f7-42f3-96e6-5642b263e751")
+	)
+	(wire
+		(pts
 			(xy 212.09 191.77) (xy 226.06 191.77)
 		)
 		(stroke
@@ -14193,23 +14171,13 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 175.26) (xy 212.09 175.26)
+			(xy 184.15 175.26) (xy 198.12 175.26)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "ccf48ef5-16e0-4522-8166-ff2283385d99")
-	)
-	(wire
-		(pts
-			(xy 156.21 182.88) (xy 170.18 182.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cd1e77e4-5f48-42ab-8203-ef121a9ff537")
 	)
 	(wire
 		(pts
@@ -14363,7 +14331,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 182.88) (xy 198.12 182.88)
+			(xy 170.18 182.88) (xy 184.15 182.88)
 		)
 		(stroke
 			(width 0)
@@ -14573,7 +14541,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 175.26) (xy 184.15 175.26)
+			(xy 156.21 175.26) (xy 170.18 175.26)
 		)
 		(stroke
 			(width 0)
@@ -15121,7 +15089,7 @@
 		)
 		(uuid "dca0cadb-e751-4700-8e8c-7374aca28a65")
 	)
-	(label "1V1"
+	(label "1V2"
 		(at 142.24 191.77 180)
 		(effects
 			(font
@@ -15471,7 +15439,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 341.3252 208.28 0)
 			(effects
 				(font
@@ -15541,7 +15509,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 154.6352 267.97 0)
 			(effects
 				(font
@@ -15650,76 +15618,6 @@
 		)
 	)
 	(symbol
-		(lib_id "device:C")
-		(at 184.15 179.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "07e96412-bd2c-40fe-95d0-13ca48f10036")
-		(property "Reference" "C88"
-			(at 187.071 177.8578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 187.071 180.2821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 185.1152 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 184.15 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 184.15 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "90ef7ae3-5581-42bf-98d5-da885aa43174")
-		)
-		(pin "2"
-			(uuid "2fe08604-9583-4130-a4af-1f79c6b84a37")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C88")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "osc-azonenberg:OSC")
 		(at 52.07 21.59 0)
 		(unit 1)
@@ -15816,7 +15714,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:BGA_436_18x18_DEPOP_0.8MM"
 			(at 106.68 220.98 0)
 			(effects
 				(font
@@ -17195,216 +17093,6 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 142.24 179.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "10fb07a2-881c-47c2-9875-3e0aaa337238")
-		(property "Reference" "C70"
-			(at 145.161 177.8578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 145.161 180.2821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 143.2052 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 142.24 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 142.24 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e11cb81a-9033-4eb1-af4a-c3132e283d2d")
-		)
-		(pin "2"
-			(uuid "38e88f15-f28a-4cd8-8d84-16d0cba96a71")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C70")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
-		(at 261.62 227.33 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "13c25bd1-7850-4ee2-a684-c0c1aaaf1837")
-		(property "Reference" "C278"
-			(at 264.541 226.1178 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 264.541 228.5421 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 262.5852 231.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 261.62 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 261.62 227.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bd9e5d74-f8bf-442c-ba2a-7080407040e7")
-		)
-		(pin "2"
-			(uuid "33479d16-736e-458d-ac78-e45887b5bf49")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C278")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
-		(at 198.12 179.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "152c2130-4f74-4fe8-b1b2-1df5408f4c51")
-		(property "Reference" "C93"
-			(at 201.041 177.8578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 201.041 180.2821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 199.0852 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 198.12 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 198.12 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1f3795f7-723f-44df-81db-a2436335b8d8")
-		)
-		(pin "2"
-			(uuid "1a8c3d7d-626b-4bac-b33c-49929ffed2e6")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C93")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
 		(at 345.44 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -17431,7 +17119,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 346.4052 166.37 0)
 			(effects
 				(font
@@ -17475,6 +17163,76 @@
 	)
 	(symbol
 		(lib_id "device:C")
+		(at 156.21 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "172ed33f-bc84-4bdc-ab93-c095cd70a1b5")
+		(property "Reference" "C78"
+			(at 159.131 177.8578 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 159.131 180.2821 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 157.1752 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 156.21 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 156.21 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "000a1c03-78c4-42a4-b3f6-e1aa0e6c76b1")
+		)
+		(pin "2"
+			(uuid "242c9961-9b09-4ba7-9fe0-a3bc8fdd7379")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C78")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
 		(at 170.18 227.33 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -17501,7 +17259,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 171.1452 231.14 0)
 			(effects
 				(font
@@ -17545,6 +17303,76 @@
 	)
 	(symbol
 		(lib_id "device:C")
+		(at 198.12 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1c11a799-9f2d-448b-a9c9-03e259a2e768")
+		(property "Reference" "C93"
+			(at 201.041 177.8578 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 201.041 180.2821 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 199.0852 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 198.12 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 198.12 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e5e939a3-a089-4897-9fcb-75fb4f8558ee")
+		)
+		(pin "2"
+			(uuid "355c6b67-3a30-464c-b7f0-31b91e4f07c9")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C93")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
 		(at 156.21 227.33 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -17571,7 +17399,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 157.1752 231.14 0)
 			(effects
 				(font
@@ -17615,16 +17443,16 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 198.12 264.16 0)
+		(at 142.24 179.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "231f45d8-47b5-43cb-8725-9f339a5d22ec")
-		(property "Reference" "C123"
-			(at 201.041 262.9478 0)
+		(uuid "2047c0f4-11bc-42f6-99cb-8ff4232c98bd")
+		(property "Reference" "C70"
+			(at 145.161 177.8578 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17633,7 +17461,7 @@
 			)
 		)
 		(property "Value" "1 uF"
-			(at 201.041 265.3721 0)
+			(at 145.161 180.2821 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17641,8 +17469,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 199.0852 267.97 0)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 143.2052 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17651,7 +17479,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 198.12 264.16 0)
+			(at 142.24 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17660,7 +17488,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 198.12 264.16 0)
+			(at 142.24 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17669,15 +17497,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "7764e692-241c-4498-90f1-9a526267853e")
+			(uuid "a7a874bf-d595-4e18-8c8c-af589e010422")
 		)
 		(pin "2"
-			(uuid "22720618-8df7-4999-8e4e-73e19600d7d9")
+			(uuid "baf7b824-5090-4ebc-b684-02f23820539d")
 		)
 		(instances
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C123")
+					(reference "C70")
 					(unit 1)
 				)
 			)
@@ -17847,7 +17675,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 143.2052 267.97 0)
 			(effects
 				(font
@@ -17917,7 +17745,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 213.0552 166.37 0)
 			(effects
 				(font
@@ -18028,6 +17856,76 @@
 	)
 	(symbol
 		(lib_id "device:C")
+		(at 284.48 186.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3b72a088-9e54-40d8-95b8-a51e0eee43a9")
+		(property "Reference" "C128"
+			(at 287.401 185.4778 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 287.401 187.9021 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 285.4452 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 284.48 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 284.48 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6b2aefa0-34dc-4be5-80ae-7b631fb1af79")
+		)
+		(pin "2"
+			(uuid "a69fc83f-f1bb-42af-9174-eaeeacda4db3")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C128")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
 		(at 198.12 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -18054,7 +17952,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 199.0852 166.37 0)
 			(effects
 				(font
@@ -18124,7 +18022,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 185.1152 166.37 0)
 			(effects
 				(font
@@ -18167,6 +18065,76 @@
 		)
 	)
 	(symbol
+		(lib_id "device:C")
+		(at 184.15 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "420e6d20-373f-401a-b58b-f9095b21b5a9")
+		(property "Reference" "C88"
+			(at 187.071 177.8578 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 187.071 180.2821 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 185.1152 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 184.15 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 184.15 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b1954fc6-ac07-4d3b-86e4-0ee2fb993cd4")
+		)
+		(pin "2"
+			(uuid "75458661-7f31-4706-a89f-b1657ae918a2")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C88")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "device:R")
 		(at 72.39 99.06 0)
 		(unit 1)
@@ -18194,7 +18162,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 70.612 99.06 90)
 			(effects
 				(font
@@ -18264,7 +18232,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 284.1752 208.28 0)
 			(effects
 				(font
@@ -18334,7 +18302,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 185.1152 199.39 0)
 			(effects
 				(font
@@ -18404,7 +18372,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 213.0552 231.14 0)
 			(effects
 				(font
@@ -18474,7 +18442,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 304.4952 166.37 0)
 			(effects
 				(font
@@ -18544,7 +18512,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 143.2052 166.37 0)
 			(effects
 				(font
@@ -18800,7 +18768,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 199.0852 215.9 0)
 			(effects
 				(font
@@ -18870,7 +18838,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 262.5852 166.37 0)
 			(effects
 				(font
@@ -18940,7 +18908,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 352.7552 208.28 0)
 			(effects
 				(font
@@ -19010,7 +18978,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 290.5252 166.37 0)
 			(effects
 				(font
@@ -19123,146 +19091,6 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 284.48 186.69 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6b58c883-17fc-4dad-8006-91398bc89ee0")
-		(property "Reference" "C128"
-			(at 287.401 185.4778 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 287.401 187.9021 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 285.4452 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 284.48 186.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 284.48 186.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9bb0471d-777a-4676-92ac-457a93bdbe3f")
-		)
-		(pin "2"
-			(uuid "1293120e-005d-488d-96e4-58d3cadae9d3")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C128")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
-		(at 271.78 186.69 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6c51a9d2-c964-4ed0-8a14-c7d0f782685c")
-		(property "Reference" "C266"
-			(at 274.701 185.4778 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2.2 uF"
-			(at 274.701 187.9021 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 272.7452 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 271.78 186.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 271.78 186.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "995f46cf-dbf8-476b-b6d1-d64318c74652")
-		)
-		(pin "2"
-			(uuid "95ecfbea-e6fe-4a7a-bd38-d86bad0b473c")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C266")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
 		(at 317.5 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19289,7 +19117,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 318.4652 166.37 0)
 			(effects
 				(font
@@ -19333,76 +19161,6 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 170.18 179.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6ecec955-ad95-4d15-a94e-030cffb95f05")
-		(property "Reference" "C83"
-			(at 173.101 177.8578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 173.101 180.2821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 171.1452 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 170.18 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 170.18 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2b2c5f23-5193-4710-ac4f-78436b090e04")
-		)
-		(pin "2"
-			(uuid "1235514b-4122-4c78-be1e-cf9e531ab548")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C83")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
 		(at 331.47 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19429,7 +19187,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 332.4352 166.37 0)
 			(effects
 				(font
@@ -19499,7 +19257,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 171.1452 166.37 0)
 			(effects
 				(font
@@ -19569,7 +19327,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 318.4652 208.28 0)
 			(effects
 				(font
@@ -19639,7 +19397,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 157.1752 166.37 0)
 			(effects
 				(font
@@ -19709,7 +19467,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 329.8952 208.28 0)
 			(effects
 				(font
@@ -19779,7 +19537,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 143.2052 215.9 0)
 			(effects
 				(font
@@ -19823,6 +19581,76 @@
 	)
 	(symbol
 		(lib_id "device:C")
+		(at 261.62 227.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8b18c443-5ef3-4d92-a196-190d5bd0a728")
+		(property "Reference" "C140"
+			(at 264.541 226.1178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 264.541 228.5421 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 262.5852 231.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 261.62 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 261.62 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fd99aa32-02dd-4182-85e7-3017b76792a5")
+		)
+		(pin "2"
+			(uuid "673dc77f-9e3e-423e-a999-5df3587f4722")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C140")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
 		(at 240.03 195.58 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19849,7 +19677,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 240.9952 199.39 0)
 			(effects
 				(font
@@ -19886,6 +19714,146 @@
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
 					(reference "C107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
+		(at 170.18 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8d5ff5f4-fdae-4877-8ba0-3cf34dfb4cd6")
+		(property "Reference" "C83"
+			(at 173.101 177.8578 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 173.101 180.2821 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 171.1452 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 170.18 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 170.18 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "64f6a0c8-9184-448c-80bd-cd16b301eaa1")
+		)
+		(pin "2"
+			(uuid "62f427b6-1b6e-41d8-82d4-abc5c8bc7340")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C83")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
+		(at 212.09 179.07 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8f28f3d2-01e3-4507-9d8d-be8f3d962329")
+		(property "Reference" "C101"
+			(at 215.011 177.8578 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1 uF"
+			(at 215.011 180.2821 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
+			(at 213.0552 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 212.09 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 212.09 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b7f5ec52-b3ed-474d-abd8-1a958b28d049")
+		)
+		(pin "2"
+			(uuid "20186f36-3ecc-421e-adbb-7b2305dfa00d")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C101")
 					(unit 1)
 				)
 			)
@@ -19986,7 +19954,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 171.1452 199.39 0)
 			(effects
 				(font
@@ -20056,7 +20024,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 187.6552 267.97 0)
 			(effects
 				(font
@@ -20126,7 +20094,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 157.1752 215.9 0)
 			(effects
 				(font
@@ -20237,76 +20205,6 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 156.21 179.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a72c7f1d-4f1b-457a-a5e7-ccfdc7019263")
-		(property "Reference" "C78"
-			(at 159.131 177.8578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 159.131 180.2821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 157.1752 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 156.21 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 156.21 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "05532fdc-9f5d-464e-bd9f-6fd33eefd3c9")
-		)
-		(pin "2"
-			(uuid "9fdc1929-eae1-46a7-b4cf-049a513f5aa5")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C78")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
 		(at 226.06 212.09 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -20333,7 +20231,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 227.0252 215.9 0)
 			(effects
 				(font
@@ -20403,7 +20301,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 166.0652 267.97 0)
 			(effects
 				(font
@@ -20473,7 +20371,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0603_CAP_NOSILK"
 			(at 143.2052 252.73 0)
 			(effects
 				(font
@@ -20543,7 +20441,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:BGA_436_18x18_DEPOP_0.8MM"
 			(at 41.91 71.12 0)
 			(effects
 				(font
@@ -22015,7 +21913,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 307.0352 208.28 0)
 			(effects
 				(font
@@ -22085,7 +21983,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 171.1452 215.9 0)
 			(effects
 				(font
@@ -22155,7 +22053,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 272.7452 208.28 0)
 			(effects
 				(font
@@ -22199,6 +22097,76 @@
 	)
 	(symbol
 		(lib_id "device:C")
+		(at 271.78 186.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c2548185-9ae0-47fb-92d2-11a7b606a9b1")
+		(property "Reference" "C123"
+			(at 274.701 185.4778 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7 uF"
+			(at 274.701 187.9021 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0603_CAP_NOSILK"
+			(at 272.7452 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 271.78 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 271.78 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ffe82b6b-2903-4201-b920-8b320b8daae0")
+		)
+		(pin "2"
+			(uuid "637fb48a-8846-41bd-81ff-8dcefcf6cdb8")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "C123")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
 		(at 226.06 195.58 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -22225,7 +22193,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 227.0252 199.39 0)
 			(effects
 				(font
@@ -22295,7 +22263,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 199.0852 231.14 0)
 			(effects
 				(font
@@ -22362,7 +22330,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:BGA_436_18x18_DEPOP_0.8MM"
 			(at 41.91 250.19 0)
 			(effects
 				(font
@@ -23767,7 +23735,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 295.6052 208.28 0)
 			(effects
 				(font
@@ -23837,7 +23805,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 143.2052 231.14 0)
 			(effects
 				(font
@@ -23905,7 +23873,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:BGA_436_18x18_DEPOP_0.8MM"
 			(at 41.91 109.22 0)
 			(effects
 				(font
@@ -25310,7 +25278,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 143.2052 199.39 0)
 			(effects
 				(font
@@ -25380,7 +25348,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 199.0852 199.39 0)
 			(effects
 				(font
@@ -25450,7 +25418,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 276.5552 166.37 0)
 			(effects
 				(font
@@ -25520,7 +25488,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 213.0552 199.39 0)
 			(effects
 				(font
@@ -25590,7 +25558,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 157.1752 199.39 0)
 			(effects
 				(font
@@ -25660,7 +25628,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 213.0552 215.9 0)
 			(effects
 				(font
@@ -25730,7 +25698,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 185.1152 215.9 0)
 			(effects
 				(font
@@ -25800,7 +25768,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 185.1152 231.14 0)
 			(effects
 				(font
@@ -25844,76 +25812,6 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 212.09 179.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fd88e226-53f0-4bc6-89f7-72ae1d5850eb")
-		(property "Reference" "C101"
-			(at 215.011 177.8578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.47 uF"
-			(at 215.011 180.2821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 213.0552 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 212.09 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 212.09 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8157e611-c8c2-4a07-89ff-93dc867535bd")
-		)
-		(pin "2"
-			(uuid "31af38e3-dd8c-4288-a6a9-abafd8fb56e3")
-		)
-		(instances
-			(project "mp2-xc7k-test"
-				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
-					(reference "C101")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "device:C")
 		(at 175.26 264.16 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -25940,7 +25838,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0201_CAP_NOSILK"
 			(at 176.2252 267.97 0)
 			(effects
 				(font

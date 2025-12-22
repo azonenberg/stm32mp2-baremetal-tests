@@ -10243,7 +10243,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 177.292 100.33 90)
 			(effects
 				(font
@@ -10381,7 +10381,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 168.402 162.56 90)
 			(effects
 				(font
@@ -10630,7 +10630,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:QFN_48_0.5MM_7x7MM"
 			(at 46.99 187.96 0)
 			(effects
 				(font
@@ -11029,7 +11029,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "4.7 uF"
 			(at 98.171 60.9021 0)
 			(effects
 				(font
@@ -11038,7 +11038,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0603_CAP_NOSILK"
 			(at 96.2152 63.5 0)
 			(effects
 				(font
@@ -11315,7 +11315,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 168.402 30.48 90)
 			(effects
 				(font
@@ -11523,7 +11523,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 168.402 198.12 90)
 			(effects
 				(font
@@ -13784,7 +13784,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:QFN_48_0.5MM_7x7MM"
 			(at 41.91 247.65 0)
 			(effects
 				(font
@@ -14076,7 +14076,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "4.7 uF"
 			(at 140.081 60.9021 0)
 			(effects
 				(font
@@ -14085,7 +14085,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0603_CAP_NOSILK"
 			(at 138.1252 63.5 0)
 			(effects
 				(font
@@ -15224,7 +15224,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 276.352 156.21 90)
 			(effects
 				(font
@@ -16375,7 +16375,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 168.402 172.72 90)
 			(effects
 				(font
@@ -16512,7 +16512,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 168.402 20.32 90)
 			(effects
 				(font
@@ -16859,7 +16859,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 276.352 146.05 90)
 			(effects
 				(font
@@ -16927,12 +16927,13 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:SOT223-4"
 			(at 114.3 46.99 0)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
@@ -16996,12 +16997,13 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:SOT223-4"
 			(at 114.3 74.93 0)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
@@ -17282,12 +17284,13 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:QFN_32_0.5MM_5x5MM"
 			(at 327.66 234.95 0)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
@@ -17431,7 +17434,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "4.7 uF"
 			(at 98.171 88.8421 0)
 			(effects
 				(font
@@ -17440,7 +17443,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0603_CAP_NOSILK"
 			(at 96.2152 91.44 0)
 			(effects
 				(font
@@ -17647,7 +17650,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 177.292 110.49 90)
 			(effects
 				(font
@@ -17987,7 +17990,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "4.7 uF"
 			(at 140.081 88.8421 0)
 			(effects
 				(font
@@ -17996,7 +17999,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0603_CAP_NOSILK"
 			(at 138.1252 91.44 0)
 			(effects
 				(font
@@ -18549,7 +18552,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 39.37 168.148 90)
 			(effects
 				(font
@@ -18618,7 +18621,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:QFN_48_0.5MM_7x7MM"
 			(at 46.99 129.54 0)
 			(effects
 				(font
@@ -19657,7 +19660,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
 			(at 168.402 187.96 90)
 			(effects
 				(font
@@ -20285,7 +20288,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:QFN_48_0.5MM_7x7MM"
 			(at 46.99 175.26 0)
 			(effects
 				(font
@@ -20582,7 +20585,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "azonenberg_pcb:QFN_48_0.5MM_7x7MM"
 			(at 46.99 198.12 0)
 			(effects
 				(font
