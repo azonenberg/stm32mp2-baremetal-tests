@@ -16214,7 +16214,7 @@
 		(uuid "366c56ca-2e3a-4c46-ad86-4ccce0ab57ee")
 	)
 	(label "GTX_REF1_N"
-		(at 92.71 36.83 0)
+		(at 92.71 26.67 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16304,7 +16304,7 @@
 		(uuid "4b685f50-dad5-40f9-94e5-1252901627a4")
 	)
 	(label "GTX1_REF_AC_P"
-		(at 71.12 26.67 0)
+		(at 71.12 36.83 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16324,7 +16324,7 @@
 		(uuid "4d364d69-85d1-4916-9e94-0f71b803d3ec")
 	)
 	(label "GTX1_REF_AC_N"
-		(at 71.12 36.83 0)
+		(at 71.12 26.67 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16384,7 +16384,7 @@
 		(uuid "61c6dcdf-f824-4be4-a593-84d144d9a5ea")
 	)
 	(label "GTX_REF1_P"
-		(at 92.71 26.67 0)
+		(at 92.71 36.83 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -19707,7 +19707,7 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 88.9 36.83 90)
+		(at 88.9 26.67 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -19716,7 +19716,7 @@
 		(fields_autoplaced yes)
 		(uuid "1872770d-1e62-4f4a-a534-b7f1e3c7844c")
 		(property "Reference" "C77"
-			(at 88.9 30.5265 90)
+			(at 88.9 20.3665 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19724,7 +19724,7 @@
 			)
 		)
 		(property "Value" "0.1 uF"
-			(at 88.9 32.9508 90)
+			(at 88.9 22.7908 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19732,7 +19732,7 @@
 			)
 		)
 		(property "Footprint" "azonenberg_pcb:EIA_0402_CAP_NOSILK"
-			(at 92.71 35.8648 0)
+			(at 92.71 25.7048 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19741,7 +19741,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 36.83 0)
+			(at 88.9 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19750,7 +19750,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 88.9 36.83 0)
+			(at 88.9 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24809,7 +24809,7 @@
 	)
 	(symbol
 		(lib_id "device:C")
-		(at 88.9 26.67 90)
+		(at 88.9 36.83 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24818,7 +24818,7 @@
 		(fields_autoplaced yes)
 		(uuid "cdbfc35a-58f5-4fb1-adc5-67a9b6ea2138")
 		(property "Reference" "C76"
-			(at 88.9 20.3665 90)
+			(at 88.9 30.5265 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24826,7 +24826,7 @@
 			)
 		)
 		(property "Value" "0.1 uF"
-			(at 88.9 22.7908 90)
+			(at 88.9 32.9508 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24834,7 +24834,7 @@
 			)
 		)
 		(property "Footprint" "azonenberg_pcb:EIA_0402_CAP_NOSILK"
-			(at 92.71 25.7048 0)
+			(at 92.71 35.8648 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24843,7 +24843,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 26.67 0)
+			(at 88.9 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24852,7 +24852,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 88.9 26.67 0)
+			(at 88.9 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)

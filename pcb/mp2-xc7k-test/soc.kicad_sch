@@ -15259,7 +15259,7 @@
 	)
 	(hierarchical_label "SFP_MOD_ABS"
 		(shape input)
-		(at 109.22 43.18 180)
+		(at 41.91 144.78 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -15303,7 +15303,7 @@
 	)
 	(hierarchical_label "SFP_RX_LOS"
 		(shape input)
-		(at 41.91 144.78 180)
+		(at 109.22 43.18 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -15358,7 +15358,7 @@
 	)
 	(hierarchical_label "SFP_TX_DISABLE"
 		(shape output)
-		(at 109.22 210.82 180)
+		(at 109.22 80.01 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -15402,7 +15402,7 @@
 	)
 	(hierarchical_label "SOC_READY"
 		(shape output)
-		(at 109.22 80.01 180)
+		(at 109.22 38.1 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -15490,7 +15490,7 @@
 	)
 	(hierarchical_label "SFP_TX_FAULT"
 		(shape input)
-		(at 109.22 38.1 180)
+		(at 109.22 210.82 180)
 		(effects
 			(font
 				(size 1.27 1.27)

@@ -12388,6 +12388,12 @@
 		(uuid "e92d45fa-8bdd-464d-8010-c65bc6d111c3")
 	)
 	(junction
+		(at 351.79 200.66)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e95fe055-7dfd-48fb-8f1a-19081928ac0e")
+	)
+	(junction
 		(at 34.29 21.59)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12404,6 +12410,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "eb73d5d9-72cd-43e9-882f-1bfaf2c265de")
+	)
+	(junction
+		(at 351.79 208.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ec97a469-6bcf-4ebd-94ba-6aa321806a6a")
 	)
 	(junction
 		(at 303.53 158.75)
@@ -12631,6 +12643,16 @@
 	)
 	(wire
 		(pts
+			(xy 351.79 208.28) (xy 365.76 208.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0fb29e08-573c-4d66-809a-6542d2bdb0ef")
+	)
+	(wire
+		(pts
 			(xy 36.83 218.44) (xy 36.83 220.98)
 		)
 		(stroke
@@ -12838,6 +12860,16 @@
 			(type default)
 		)
 		(uuid "2990661d-b2ae-477b-8991-c8d9042f9560")
+	)
+	(wire
+		(pts
+			(xy 365.76 208.28) (xy 365.76 205.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29a5bd5c-6c5a-44d6-844e-c724df1601b5")
 	)
 	(wire
 		(pts
@@ -13088,6 +13120,16 @@
 			(type default)
 		)
 		(uuid "47489391-c349-4098-b3b9-58cb23e2620f")
+	)
+	(wire
+		(pts
+			(xy 351.79 200.66) (xy 361.95 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47e9851d-24a6-45d9-abca-698c96418210")
 	)
 	(wire
 		(pts
@@ -20198,6 +20240,76 @@
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
 					(reference "R43")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "conn:CONN_COAXIAL")
+		(at 365.76 200.66 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a62b14c6-92f3-4fe2-9402-eec68eeedfca")
+		(property "Reference" "TP13"
+			(at 368.3 199.741 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "U.FL"
+			(at 368.3 202.1653 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:CONN_U.FL_TE_1909763-1"
+			(at 365.76 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 365.76 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, ...)"
+			(at 365.76 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "770772c8-ecaf-460a-8e7c-131173b934ee")
+		)
+		(pin "2"
+			(uuid "c44fac80-16d5-4847-86d1-c0ea6154aa7a")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "TP13")
 					(unit 1)
 				)
 			)
