@@ -14916,10 +14916,6 @@
 		(uuid "32b8dbe6-1757-473f-b3de-ed2bf8358d60")
 	)
 	(no_connect
-		(at 345.44 219.71)
-		(uuid "355729ba-c656-47b0-ad8a-ad06ace6056d")
-	)
-	(no_connect
 		(at 345.44 115.57)
 		(uuid "3933ebf1-0259-4428-8551-ac086207061f")
 	)
@@ -15022,6 +15018,10 @@
 	(no_connect
 		(at 345.44 161.29)
 		(uuid "ae860238-6b54-436c-a1bc-37faaec0e8e6")
+	)
+	(no_connect
+		(at 345.44 191.77)
+		(uuid "aff09431-6e4e-470c-941a-2df69d82112e")
 	)
 	(no_connect
 		(at 49.53 194.31)
@@ -16044,7 +16044,7 @@
 		(uuid "05112ce4-7614-40ab-a053-3881f4d7c361")
 	)
 	(label "FPGA_LED3"
-		(at 345.44 232.41 180)
+		(at 345.44 240.03 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16074,7 +16074,7 @@
 		(uuid "0da24661-9d0a-40d0-a80f-1c240ce00e5b")
 	)
 	(label "FPGA_LED0"
-		(at 345.44 240.03 180)
+		(at 345.44 237.49 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16134,7 +16134,7 @@
 		(uuid "17184078-d172-440b-92ff-b426c7429bf5")
 	)
 	(label "SFP_LED2"
-		(at 345.44 191.77 180)
+		(at 345.44 219.71 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16424,7 +16424,7 @@
 		(uuid "731e881b-49fc-4064-b328-7e9ae386bbe3")
 	)
 	(label "FPGA_LED1"
-		(at 345.44 237.49 180)
+		(at 345.44 234.95 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16734,7 +16734,7 @@
 		(uuid "d8fc95f6-5079-4787-b222-fd84ac8087d0")
 	)
 	(label "FPGA_LED2"
-		(at 345.44 234.95 180)
+		(at 345.44 232.41 180)
 		(effects
 			(font
 				(size 1.27 1.27)
