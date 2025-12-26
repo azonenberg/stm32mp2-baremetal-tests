@@ -5,7 +5,7 @@
 	(uuid "1d6c2e99-be73-4256-9868-e5de5b2a673b")
 	(paper "A3")
 	(title_block
-		(date "2025-12-19")
+		(date "2025-12-25")
 		(rev "0.1")
 	)
 	(lib_symbols
@@ -5319,7 +5319,7 @@
 							)
 						)
 					)
-					(number "AF9"
+					(number "Y8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -5422,7 +5422,7 @@
 							)
 						)
 					)
-					(number "AG10"
+					(number "T8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6885,7 +6885,7 @@
 							)
 						)
 					)
-					(number "AE5"
+					(number "AA6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -12496,10 +12496,6 @@
 		(uuid "fe470505-e61d-45c0-8520-9afd47272db2")
 	)
 	(no_connect
-		(at 36.83 203.2)
-		(uuid "0778fd90-aa49-4a9e-a43e-8a52444a7c98")
-	)
-	(no_connect
 		(at 36.83 54.61)
 		(uuid "0ba200f1-5c6e-4283-958f-1139aab7fa47")
 	)
@@ -15022,6 +15018,16 @@
 		(uuid "92d3ff2c-0504-4fde-a23f-e846dc9816d4")
 	)
 	(label "GND"
+		(at 36.83 203.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "974fa241-e567-42d8-b486-4b8b7af23805")
+	)
+	(label "GND"
 		(at 142.24 215.9 180)
 		(effects
 			(font
@@ -15783,7 +15789,7 @@
 				(hide yes)
 			)
 		)
-		(pin "AE5"
+		(pin "Y8"
 			(uuid "785f8fb1-5d8f-4365-b7f2-f15878cdb25b")
 		)
 		(pin "U16"
@@ -15798,7 +15804,7 @@
 		(pin "AA7"
 			(uuid "9d7423a0-7b15-4f02-8596-552dbd395074")
 		)
-		(pin "AG10"
+		(pin "T8"
 			(uuid "ab39c7aa-b020-408b-ae31-ff4a9a196eec")
 		)
 		(pin "L7"
@@ -17051,7 +17057,7 @@
 		(pin "W9"
 			(uuid "f1b0ec46-1fbf-454d-ab38-9478ced4878f")
 		)
-		(pin "AF9"
+		(pin "AA6"
 			(uuid "35ad6a91-f811-41f5-90f8-e5bd01d92c3f")
 		)
 		(pin "T6"
@@ -20580,7 +20586,7 @@
 				(hide yes)
 			)
 		)
-		(pin "AE5"
+		(pin "Y8"
 			(uuid "785f8fb1-5d8f-4365-b7f2-f15878cdb258")
 		)
 		(pin "U16"
@@ -20595,7 +20601,7 @@
 		(pin "AA7"
 			(uuid "9d7423a0-7b15-4f02-8596-552dbd395071")
 		)
-		(pin "AG10"
+		(pin "T8"
 			(uuid "ab39c7aa-b020-408b-ae31-ff4a9a196ee9")
 		)
 		(pin "L7"
@@ -21848,7 +21854,7 @@
 		(pin "W9"
 			(uuid "f1b0ec46-1fbf-454d-ab38-9478ced4878c")
 		)
-		(pin "AF9"
+		(pin "AA6"
 			(uuid "35ad6a91-f811-41f5-90f8-e5bd01d92c3c")
 		)
 		(pin "T6"
@@ -22469,7 +22475,7 @@
 				(hide yes)
 			)
 		)
-		(pin "AE5"
+		(pin "AA6"
 			(uuid "785f8fb1-5d8f-4365-b7f2-f15878cdb25a")
 		)
 		(pin "U16"
@@ -22484,7 +22490,7 @@
 		(pin "AA7"
 			(uuid "9d7423a0-7b15-4f02-8596-552dbd395073")
 		)
-		(pin "AG10"
+		(pin "Y8"
 			(uuid "ab39c7aa-b020-408b-ae31-ff4a9a196eeb")
 		)
 		(pin "L7"
@@ -23737,7 +23743,7 @@
 		(pin "W9"
 			(uuid "f1b0ec46-1fbf-454d-ab38-9478ced4878e")
 		)
-		(pin "AF9"
+		(pin "T8"
 			(uuid "35ad6a91-f811-41f5-90f8-e5bd01d92c3e")
 		)
 		(pin "T6"
@@ -24012,7 +24018,7 @@
 				(hide yes)
 			)
 		)
-		(pin "AE5"
+		(pin "Y8"
 			(uuid "785f8fb1-5d8f-4365-b7f2-f15878cdb259")
 		)
 		(pin "U16"
@@ -24027,7 +24033,7 @@
 		(pin "AA7"
 			(uuid "9d7423a0-7b15-4f02-8596-552dbd395072")
 		)
-		(pin "AG10"
+		(pin "AA6"
 			(uuid "ab39c7aa-b020-408b-ae31-ff4a9a196eea")
 		)
 		(pin "L7"
@@ -25280,7 +25286,7 @@
 		(pin "W9"
 			(uuid "f1b0ec46-1fbf-454d-ab38-9478ced4878d")
 		)
-		(pin "AF9"
+		(pin "T8"
 			(uuid "35ad6a91-f811-41f5-90f8-e5bd01d92c3d")
 		)
 		(pin "T6"

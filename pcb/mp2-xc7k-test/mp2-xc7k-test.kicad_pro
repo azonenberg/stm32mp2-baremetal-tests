@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.125
         }
       },
       "diff_pair_dimensions": [
@@ -63,7 +63,20 @@
           "width": 0.2
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "net_conflict|161300000|101800000|066e68fc-7ad1-43b2-8c2f-318a654395fe|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "net_conflict|205200000|104200000|e69d4c28-9fec-4237-b926-53482a262766|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "silk_over_copper|165449999|77350000|e657c5fb-da72-4bdd-ba14-3ee18c4ccaf9|00000000-0000-0000-0000-000000000000",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -252,24 +265,7 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [
-      [
-        "pin_to_pin|1397000|1066800|77138a4c-0be7-47a7-a60b-fdfd59bc10b4|f8cac43e-a137-4b7f-a83a-cdd0f23ba3eb|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270",
-        ""
-      ],
-      [
-        "pin_to_pin|1397000|1270000|f8cac43e-a137-4b7f-a83a-cdd0f23ba3eb|00fe3a86-7f87-4cc7-b30d-13a8e46fd510|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270",
-        ""
-      ],
-      [
-        "pin_to_pin|2476500|1524000|112b9f0f-00dd-4fc7-b90e-cfcdec79d318|06f9e7db-4216-49da-a16f-849173d7e8e0|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/3a309ac0-7a5d-4faf-ba58-72b0a5814270",
-        ""
-      ],
-      [
-        "power_pin_not_driven|368300|393700|0a34146d-648f-4d7c-b87c-62bec2850035|00000000-0000-0000-0000-000000000000|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791|/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791|",
-        ""
-      ]
-    ],
+    "erc_exclusions": [],
     "meta": {
       "version": 0
     },
