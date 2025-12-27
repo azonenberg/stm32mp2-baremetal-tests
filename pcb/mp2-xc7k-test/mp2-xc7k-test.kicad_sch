@@ -5,7 +5,7 @@
 	(uuid "b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb")
 	(paper "A3")
 	(title_block
-		(date "2025-12-25")
+		(date "2025-12-26")
 		(rev "0.1")
 	)
 	(lib_symbols
@@ -738,7 +738,7 @@
 		)
 		(uuid "c8a7acfe-f5ce-45fc-9e8b-b1c1cbd3e935")
 	)
-	(label "1V8"
+	(label "SOC_1V8"
 		(at 104.14 60.96 0)
 		(effects
 			(font
@@ -847,6 +847,16 @@
 			(justify right bottom)
 		)
 		(uuid "fc814597-4dc2-4db4-9af2-01162f46f4d4")
+	)
+	(label "SOC_1V8"
+		(at 25.4 25.4 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ff4880a4-2aa4-4d70-ab3a-8deda5742306")
 	)
 	(label "1V8_2"
 		(at 104.14 63.5 0)
@@ -2431,6 +2441,16 @@
 		(pin "1V8_2" output
 			(at 25.4 22.86 180)
 			(uuid "98b59dcc-9cb1-489e-bbd5-f8305ae3a73d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SOC_1V8" output
+			(at 25.4 25.4 180)
+			(uuid "257faa3a-b52e-4f4f-964e-bd36ee85fbdd")
 			(effects
 				(font
 					(size 1.27 1.27)
