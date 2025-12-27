@@ -12749,6 +12749,16 @@
 	)
 	(wire
 		(pts
+			(xy 77.47 223.52) (xy 82.55 223.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19780b4b-6469-4266-be8a-3a9f851e6942")
+	)
+	(wire
+		(pts
 			(xy 71.12 21.59) (xy 68.58 21.59)
 		)
 		(stroke
@@ -13779,6 +13789,16 @@
 	)
 	(wire
 		(pts
+			(xy 77.47 243.84) (xy 82.55 243.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "987c549c-d20a-4865-be88-89ad868de336")
+	)
+	(wire
+		(pts
 			(xy 283.21 200.66) (xy 294.64 200.66)
 		)
 		(stroke
@@ -14698,6 +14718,16 @@
 		(uuid "0f6ecbc6-438a-400c-8a4b-1a6a20667161")
 	)
 	(label "GND"
+		(at 90.17 243.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1051a464-9a2a-49db-ba33-1dda7ff01765")
+	)
+	(label "GND"
 		(at 142.24 231.14 180)
 		(effects
 			(font
@@ -14767,6 +14797,16 @@
 		)
 		(uuid "2e20f8a2-0654-4554-899f-72a78dbf64a3")
 	)
+	(label "GND"
+		(at 90.17 223.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "38427e09-bd67-4dd9-bfe7-aa572d996b44")
+	)
 	(label "SOC_JTAG_TDI"
 		(at 36.83 102.87 180)
 		(effects
@@ -14806,16 +14846,6 @@
 			(justify right bottom)
 		)
 		(uuid "4641fc52-3605-485e-ba28-7b6b423e5c7c")
-	)
-	(label "GND"
-		(at 77.47 223.52 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4f1340a8-f894-462c-ba5f-b5370ef02455")
 	)
 	(label "3V3"
 		(at 72.39 105.41 0)
@@ -15176,16 +15206,6 @@
 			(justify right bottom)
 		)
 		(uuid "e95ff318-6e98-4761-a0bc-eee6608cabdc")
-	)
-	(label "GND"
-		(at 77.47 243.84 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "eca3b79d-0941-421f-bd9a-ec5552e6ebaf")
 	)
 	(label "GND"
 		(at 271.78 190.5 180)
@@ -17490,6 +17510,73 @@
 		)
 	)
 	(symbol
+		(lib_id "device:R")
+		(at 86.36 223.52 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1fb4ba22-e28a-414b-a03d-7ca8d2a4fe7c")
+		(property "Reference" "R28"
+			(at 86.36 220.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 86.36 223.52 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
+			(at 86.36 225.298 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 86.36 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 86.36 223.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "01b67e2c-8fc3-47b6-a3f2-738e4aee8e06")
+		)
+		(pin "2"
+			(uuid "386802df-7bf3-4274-9a41-90769bdd1db0")
+		)
+		(instances
+			(project ""
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "R28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "device:C")
 		(at 142.24 179.07 0)
 		(unit 1)
@@ -17830,6 +17917,73 @@
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
 					(reference "C100")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:R")
+		(at 86.36 243.84 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "37ba049c-bb0a-496f-b2bf-d96ac12b55b3")
+		(property "Reference" "R29"
+			(at 86.36 246.38 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 86.36 243.84 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0402_RES_NOSILK"
+			(at 86.36 245.618 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 86.36 243.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 86.36 243.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8626f713-d39f-4ef1-aa1b-e89b5bae56ca")
+		)
+		(pin "2"
+			(uuid "170e5a04-34be-4d7f-919d-8e143139ad1f")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/9cff8885-a75f-4d5c-8256-e2d0dc09d791"
+					(reference "R29")
 					(unit 1)
 				)
 			)

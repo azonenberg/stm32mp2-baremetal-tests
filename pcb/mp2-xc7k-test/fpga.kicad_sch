@@ -14719,6 +14719,16 @@
 		)
 		(uuid "e0b104aa-09bd-4fd4-8381-85b1bec27c23")
 	)
+	(text "Return current for CCLK"
+		(exclude_from_sim no)
+		(at 276.86 250.19 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "e4ff5d22-03ec-4308-a37a-2453d1fddbb5")
+	)
 	(text "Heatsink"
 		(exclude_from_sim no)
 		(at 228.6 207.01 0)
@@ -14778,10 +14788,22 @@
 		(uuid "2f6446f9-f204-494b-ae38-530dbaa6159b")
 	)
 	(junction
+		(at 267.97 248.92)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "31e5aa4e-d086-4245-9c30-0dfa8c91d14c")
+	)
+	(junction
 		(at 148.59 162.56)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "35b78f06-811f-4fe7-94a6-f1a3c1f0d42e")
+	)
+	(junction
+		(at 248.92 241.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3ed885e3-0f2d-4e08-84c2-e80675275ee1")
 	)
 	(junction
 		(at 217.17 187.96)
@@ -14806,6 +14828,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5fa0f239-6858-4274-9542-bb8dd5f600b4")
+	)
+	(junction
+		(at 248.92 248.92)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "62919e04-5f14-4ad7-9d2e-9f65d516dfeb")
+	)
+	(junction
+		(at 267.97 241.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6aaf504a-32da-4541-8bd9-459f90d6de97")
 	)
 	(junction
 		(at 154.94 262.89)
@@ -15145,6 +15179,16 @@
 	)
 	(wire
 		(pts
+			(xy 248.92 241.3) (xy 267.97 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "176d1edc-2a6d-4653-89d6-0ca969330556")
+	)
+	(wire
+		(pts
 			(xy 40.64 27.94) (xy 40.64 30.48)
 		)
 		(stroke
@@ -15275,6 +15319,16 @@
 	)
 	(wire
 		(pts
+			(xy 267.97 241.3) (xy 283.21 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35d5b7e5-936b-4786-b702-7ec847f2c441")
+	)
+	(wire
+		(pts
 			(xy 212.09 179.07) (xy 217.17 179.07)
 		)
 		(stroke
@@ -15372,6 +15426,16 @@
 			(type default)
 		)
 		(uuid "51882fb4-d64d-454f-9ece-4091a7f98a44")
+	)
+	(wire
+		(pts
+			(xy 267.97 248.92) (xy 283.21 248.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53c9c880-55d1-408e-9003-670ca8049f98")
 	)
 	(wire
 		(pts
@@ -15652,6 +15716,16 @@
 			(type default)
 		)
 		(uuid "9cf4e4d9-44a2-4330-8168-e43b2c7abae6")
+	)
+	(wire
+		(pts
+			(xy 248.92 248.92) (xy 267.97 248.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9e69f0db-a37a-477e-9bb6-17d7459a5818")
 	)
 	(polyline
 		(pts
@@ -19904,6 +19978,75 @@
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/4d79ff40-6c61-41c3-bba8-95e178d9ca85"
 					(reference "J7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
+		(at 283.21 245.11 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2811f909-de48-494b-8eae-371f8359853e")
+		(property "Reference" "C143"
+			(at 286.131 243.9416 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.47 uF"
+			(at 286.131 246.253 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0402_CAP_NOSILK"
+			(at 284.1752 248.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 283.21 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 283.21 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "030481d6-3793-4120-88f4-a7115cc0ee45")
+		)
+		(pin "2"
+			(uuid "6ebaa73e-3ea0-4a3d-a1b7-0c407535cb3e")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/4d79ff40-6c61-41c3-bba8-95e178d9ca85"
+					(reference "C143")
 					(unit 1)
 				)
 			)
@@ -24319,6 +24462,75 @@
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/4d79ff40-6c61-41c3-bba8-95e178d9ca85"
 					(reference "R126")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "device:C")
+		(at 267.97 245.11 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a3d805a8-973b-463b-9fde-f018a53440e9")
+		(property "Reference" "C142"
+			(at 270.891 243.9416 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.47 uF"
+			(at 270.891 246.253 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:EIA_0402_CAP_NOSILK"
+			(at 268.9352 248.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 267.97 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 267.97 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a9353702-9562-463d-bb53-4f3b2b92cdf0")
+		)
+		(pin "2"
+			(uuid "123dfbe3-d180-43ab-a7a6-6078435017c8")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb/4d79ff40-6c61-41c3-bba8-95e178d9ca85"
+					(reference "C142")
 					(unit 1)
 				)
 			)
