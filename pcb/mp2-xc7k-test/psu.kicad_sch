@@ -5154,19 +5154,6 @@
 		)
 		(uuid "b3b12526-fb54-439e-9267-21e7c3af524e")
 	)
-	(text "TODO: signoff check on all voltage dividers"
-		(exclude_from_sim no)
-		(at 311.15 78.74 0)
-		(effects
-			(font
-				(size 2.54 2.54)
-				(thickness 0.508)
-				(bold yes)
-			)
-			(justify left)
-		)
-		(uuid "b6a0ce66-236b-4591-915a-6e2c68a30cb9")
-	)
 	(text "Rail enable pulldowns"
 		(exclude_from_sim no)
 		(at 187.96 226.06 0)

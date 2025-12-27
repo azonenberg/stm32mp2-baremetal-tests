@@ -9,6 +9,121 @@
 		(rev "0.1")
 	)
 	(lib_symbols
+		(symbol "conn:CONN_01X01"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "CONN_01X01"
+				(at 2.54 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Connector, single row, 01x01, pin header"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin_Header_Straight_1X* Pin_Header_Angled_1X* Socket_Strip_Straight_1X* Socket_Strip_Angled_1X*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "CONN_01X01_0_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0.254 -0.127)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "CONN_01X01_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "P1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "special-azonenberg:MECHANICAL"
 			(pin_names
 				(offset 1.016)
@@ -74,6 +189,24 @@
 			)
 			(embedded_fonts no)
 		)
+	)
+	(junction
+		(at 297.18 25.4)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "32264abd-826a-4b5b-bcf5-c0fa5c39c5e6")
+	)
+	(junction
+		(at 297.18 38.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "680da5cc-9633-4d65-8774-e40a32e74515")
+	)
+	(junction
+		(at 297.18 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c0fd4f22-b745-41c2-be82-24ccfe541d5a")
 	)
 	(wire
 		(pts
@@ -227,6 +360,16 @@
 	)
 	(wire
 		(pts
+			(xy 297.18 31.75) (xy 297.18 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60252d1f-ef70-4c07-9a2a-451c30f0cc72")
+	)
+	(wire
+		(pts
 			(xy 107.95 119.38) (xy 115.57 119.38)
 		)
 		(stroke
@@ -277,6 +420,16 @@
 	)
 	(wire
 		(pts
+			(xy 297.18 19.05) (xy 297.18 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f014ff7-f5ba-4163-ad2b-4705c970180e")
+	)
+	(wire
+		(pts
 			(xy 45.72 27.94) (xy 59.69 27.94)
 		)
 		(stroke
@@ -294,6 +447,16 @@
 			(type default)
 		)
 		(uuid "7c42cd2f-f202-4197-ba9f-c201d0e0743c")
+	)
+	(wire
+		(pts
+			(xy 297.18 38.1) (xy 297.18 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86e3ab4a-c9f9-4a09-8ab5-1f4ed9b9e613")
 	)
 	(wire
 		(pts
@@ -334,6 +497,16 @@
 			(type default)
 		)
 		(uuid "9213852b-b63c-4133-9383-f4084270989e")
+	)
+	(wire
+		(pts
+			(xy 297.18 25.4) (xy 297.18 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "942d2615-0ecf-4308-aaf7-8d3b49ce9a4d")
 	)
 	(wire
 		(pts
@@ -494,6 +667,16 @@
 			(justify left bottom)
 		)
 		(uuid "378a432d-8406-4984-830c-3162334776b5")
+	)
+	(label "GND"
+		(at 297.18 19.05 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9e91e8cd-e9bb-4f81-8b5e-6b8d2b7242eb")
 	)
 	(label "0V9"
 		(at 45.72 33.02 0)
@@ -804,6 +987,140 @@
 		)
 	)
 	(symbol
+		(lib_id "conn:CONN_01X01")
+		(at 302.26 31.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1c95cae2-9da9-4794-8d00-35d3e13f3dc7")
+		(property "Reference" "TP16"
+			(at 304.165 30.5378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GROUND"
+			(at 304.165 32.9621 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:TESTPOINT_BARETRACE_328UM"
+			(at 302.26 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 302.26 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Connector, single row, 01x01, pin header"
+			(at 302.26 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d8559c67-33dc-4a72-a90c-a432e4efd7f2")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb"
+					(reference "TP16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "conn:CONN_01X01")
+		(at 302.26 25.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "31c82464-3838-49de-bcfd-d126a3fbcd25")
+		(property "Reference" "TP15"
+			(at 304.165 24.1878 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GROUND"
+			(at 304.165 26.6121 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:TESTPOINT_SMT_KEYSTONE_5016"
+			(at 302.26 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 302.26 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Connector, single row, 01x01, pin header"
+			(at 302.26 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "49680f63-2d23-4340-9133-df11c89ebafd")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb"
+					(reference "TP15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "special-azonenberg:MECHANICAL")
 		(at 318.77 50.8 0)
 		(unit 1)
@@ -868,6 +1185,140 @@
 		)
 	)
 	(symbol
+		(lib_id "conn:CONN_01X01")
+		(at 302.26 38.1 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4309390a-c67f-4537-bedc-1d4792e989dd")
+		(property "Reference" "TP17"
+			(at 304.165 36.8878 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GROUND"
+			(at 304.165 39.3121 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:TESTPOINT_BARETRACE_328UM"
+			(at 302.26 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 302.26 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Connector, single row, 01x01, pin header"
+			(at 302.26 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8bd3312c-1057-4c6f-b0db-9e284c3830fa")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb"
+					(reference "TP17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "conn:CONN_01X01")
+		(at 302.26 44.45 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4c7deb92-9a89-4887-955a-f6ddc990c94b")
+		(property "Reference" "TP18"
+			(at 304.165 43.2378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GROUND"
+			(at 304.165 45.6621 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:TESTPOINT_BARETRACE_328UM"
+			(at 302.26 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 302.26 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Connector, single row, 01x01, pin header"
+			(at 302.26 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a95022b6-33c9-4bc7-95d5-54d555c3a5b2")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb"
+					(reference "TP18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "special-azonenberg:MECHANICAL")
 		(at 387.35 44.45 0)
 		(unit 1)
@@ -926,6 +1377,73 @@
 			(project "mp2-xc7k-test"
 				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb"
 					(reference "M9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "conn:CONN_01X01")
+		(at 302.26 19.05 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "60bcd44c-4abd-425d-a80c-b06d797ca6ca")
+		(property "Reference" "TP14"
+			(at 304.165 17.8378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GROUND"
+			(at 304.165 20.2621 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "azonenberg_pcb:TESTPOINT_SMT_KEYSTONE_5016"
+			(at 302.26 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 302.26 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Connector, single row, 01x01, pin header"
+			(at 302.26 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "050922d7-6112-41b6-8ed3-609d0ee13f7a")
+		)
+		(instances
+			(project "mp2-xc7k-test"
+				(path "/b52ad5ff-5dbb-4f64-8839-2dc6cd4521cb"
+					(reference "TP14")
 					(unit 1)
 				)
 			)
