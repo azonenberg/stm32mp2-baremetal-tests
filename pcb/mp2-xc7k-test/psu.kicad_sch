@@ -5022,15 +5022,16 @@
 		)
 		(uuid "0c1f9061-7287-4688-8d82-c1646cb538bc")
 	)
-	(text "TODO: validate that VCCINT inductor can handle the current"
+	(text "Original design called for \nDFE322520FD-2R2M=P2\nThermals are marginal at worst\ncase current but should be fine\nw/ realistic load\n\nBut if we can fit, NRS5030 is better\nWe have it in 1 uH"
 		(exclude_from_sim no)
-		(at 328.93 88.9 0)
+		(at 146.05 127 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
+			(justify left)
 		)
-		(uuid "1e72524e-eddc-4bb7-8765-3dd0307ffb6e")
+		(uuid "202748a2-2cc3-4b38-9db4-a72ff0571d9b")
 	)
 	(text "Rail test points"
 		(exclude_from_sim no)
@@ -6387,7 +6388,7 @@
 	)
 	(polyline
 		(pts
-			(xy 78.74 66.04) (xy -29.21 66.04)
+			(xy 78.74 66.04) (xy 186.69 66.04)
 		)
 		(stroke
 			(width 0)
@@ -10991,7 +10992,7 @@
 		(dnp no)
 		(uuid "1e5dfd21-cbeb-4c93-a005-9bd317fe068e")
 		(property "Reference" "L2"
-			(at 152.4 31.3447 90)
+			(at 152.4 24.13 90)
 			(effects
 				(font
 					(size 1.016 1.016)
@@ -10999,7 +11000,7 @@
 			)
 		)
 		(property "Value" "2.2 uH"
-			(at 152.4 29.3292 90)
+			(at 152.4 22.1145 90)
 			(effects
 				(font
 					(size 1.016 1.016)
@@ -17615,7 +17616,7 @@
 				)
 			)
 		)
-		(property "Value" "2.2 uH"
+		(property "Value" "1 uH"
 			(at 152.4 102.87 90)
 			(effects
 				(font
@@ -17623,7 +17624,7 @@
 				)
 			)
 		)
-		(property "Footprint" "azonenberg_pcb:EIA_1210_CAP_NOSILK"
+		(property "Footprint" "azonenberg_pcb:INDUCTOR_YUDEN_NRS5030"
 			(at 152.4 106.68 0)
 			(effects
 				(font
