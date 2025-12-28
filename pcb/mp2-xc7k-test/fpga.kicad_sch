@@ -23516,7 +23516,7 @@
 				)
 			)
 		)
-		(property "Value" "10K"
+		(property "Value" "1K"
 			(at 337.82 128.27 90)
 			(effects
 				(font
